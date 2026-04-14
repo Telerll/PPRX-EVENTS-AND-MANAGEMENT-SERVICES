@@ -21,6 +21,7 @@
       background: #070d18;
       color: #ffffff;
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     a {
@@ -34,9 +35,14 @@
     }
 
     section {
-      padding: 90px 20px;
+      padding: 88px 20px;
       position: relative;
       text-align: center;
+      background: linear-gradient(180deg, #07101c 0%, #08111d 100%);
+    }
+
+    section:nth-of-type(even) {
+      background: linear-gradient(180deg, #08111d 0%, #07101c 100%);
     }
 
     .container {
@@ -45,29 +51,8 @@
       margin: 0 auto;
     }
 
-    .section-dark {
-      background: linear-gradient(180deg, #07101c 0%, #08111d 100%);
-    }
-
-    .section-alt {
-      background: linear-gradient(180deg, #08111d 0%, #07101c 100%);
-    }
-
-    .section-badge {
-      display: inline-block;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1.4px;
-      padding: 8px 16px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: #dbeafe;
-      margin: 0 auto 18px;
-    }
-
     .section-title {
-      font-size: 40px;
+      font-size: 42px;
       line-height: 1.15;
       margin-bottom: 14px;
       color: #ffffff;
@@ -75,19 +60,25 @@
     }
 
     .section-subtitle {
-      max-width: 860px;
+      max-width: 880px;
       color: #cbd5e1;
       font-size: 17px;
       margin: 0 auto 42px;
       text-align: center;
     }
 
-    .glass-box {
+    .glass-box,
+    .info-box,
+    .service-card,
+    .about-card,
+    .text-panel,
+    .side-panel,
+    .portfolio-card {
       background: rgba(255,255,255,0.045);
       border: 1px solid rgba(255,255,255,0.07);
       backdrop-filter: blur(10px);
       border-radius: 24px;
-      box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
     }
 
     /* HERO */
@@ -216,6 +207,7 @@
       transition: 0.3s ease;
       display: inline-block;
       text-align: center;
+      cursor: pointer;
     }
 
     .btn-primary {
@@ -224,10 +216,20 @@
       box-shadow: 0 8px 20px rgba(255, 138, 0, 0.26);
     }
 
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(255, 138, 0, 0.32);
+    }
+
     .btn-secondary {
       border: 1px solid rgba(255,255,255,0.28);
       color: white;
       background: rgba(255,255,255,0.04);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.08);
     }
 
     .hero-tags {
@@ -245,188 +247,200 @@
       color: #f2f6ff;
     }
 
-    /* COMMON GRIDS */
-    .service-list {
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* GRIDS */
+    .services-grid,
+    .triple-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 22px;
       align-items: stretch;
     }
 
-    .two-col-grid {
+    .dual-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 22px;
       align-items: stretch;
+      max-width: 1080px;
+      margin: 0 auto;
     }
 
-    .service-item {
+    /* event types: 2x2 para hindi bungi */
+    #event-types .services-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .service-card {
       padding: 28px 24px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.045);
-      border: 1px solid rgba(255,255,255,0.07);
-      transition: transform 0.3s ease, border-color 0.3s ease;
       text-align: center;
+      transition: transform 0.3s ease, border-color 0.3s ease;
       min-height: 100%;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.16);
     }
 
-    .service-item h3 {
+    .service-card:hover,
+    .portfolio-card:hover,
+    .about-card:hover,
+    .info-box:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,179,71,0.35);
+    }
+
+    .service-card h3 {
       font-size: 21px;
       margin-bottom: 12px;
       color: #ffffff;
     }
 
-    .service-item p {
+    .service-card p {
       color: #cbd5e1;
       font-size: 15px;
       line-height: 1.7;
     }
 
-    .service-item:hover,
-    .highlight-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(255,179,71,0.35);
-    }
-
     /* CTA */
-    .why-cta {
-      max-width: 920px;
+    .cta-box {
+      max-width: 1020px;
       margin: 36px auto 0;
-      padding: 42px 30px 34px;
+      padding: 42px 28px 34px;
       text-align: center;
     }
 
-    .why-cta h3 {
+    .cta-box h3 {
       font-size: 30px;
       color: #ffffff;
       margin-bottom: 12px;
     }
 
-    .why-cta p {
+    .cta-box p {
       color: #ffb347;
       font-size: 18px;
       font-weight: 700;
-      margin-bottom: 26px;
+      margin-bottom: 24px;
     }
 
-    /* ABOUT / OVERVIEW */
-    .split-box {
+    /* ABOUT */
+    .about-card {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
+      grid-template-columns: 320px 1fr;
+      gap: 28px;
       align-items: stretch;
-    }
-
-    .text-panel,
-    .side-panel {
-      padding: 34px 28px;
+      overflow: hidden;
       text-align: left;
-      border-radius: 24px;
-      background: rgba(255,255,255,0.045);
-      border: 1px solid rgba(255,255,255,0.07);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.16);
+      max-width: 1050px;
+      margin: 0 auto;
     }
 
-    .text-panel h3,
-    .side-panel h3 {
-      font-size: 30px;
-      margin-bottom: 16px;
+    .about-visual {
+      min-height: 300px;
+      background:
+        linear-gradient(rgba(6, 12, 24, 0.20), rgba(6, 12, 24, 0.35)),
+        url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+    }
+
+    .about-content {
+      padding: 34px 30px;
+      text-align: left;
+    }
+
+    .about-content h2 {
+      font-size: 42px;
+      margin-bottom: 18px;
       color: #ffffff;
     }
 
-    .side-panel .highlight-line {
-      font-size: 21px;
-      color: #ffb347;
-      font-weight: 700;
-      margin-bottom: 14px;
-    }
-
-    .text-panel p,
-    .side-panel p {
+    .about-content p {
       color: #d2dbea;
-      margin-bottom: 14px;
-      font-size: 16px;
-      line-height: 1.8;
+      font-size: 17px;
+      line-height: 1.9;
+      margin-bottom: 16px;
     }
 
-    .text-panel p:last-child,
-    .side-panel p:last-child {
+    .about-content p:last-child {
       margin-bottom: 0;
     }
 
-    /* HIGHLIGHTS */
-    .highlight-grid {
+    /* OVERVIEW / CONTACT INFO BOX */
+    .info-box {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 38px 32px;
+      text-align: center;
+    }
+
+    .info-box p {
+      color: #dbe5f4;
+      font-size: 16px;
+      line-height: 1.9;
+      margin-bottom: 14px;
+    }
+
+    .info-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* portfolio */
+    .portfolio-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 20px;
     }
 
-    .highlight-card {
+    .portfolio-card {
       overflow: hidden;
-      border-radius: 24px;
-      background: rgba(255,255,255,0.045);
-      border: 1px solid rgba(255,255,255,0.07);
+      cursor: pointer;
       transition: transform 0.3s ease, border-color 0.3s ease;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.16);
     }
 
-    .highlight-image {
-      height: 210px;
-      background-size: cover;
-      background-position: center;
+    .portfolio-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
     }
 
-    .highlight-content {
+    .portfolio-content {
       padding: 22px;
       text-align: center;
     }
 
-    .highlight-content h3 {
+    .portfolio-content h3 {
       font-size: 22px;
       color: #ffffff;
       margin-bottom: 10px;
     }
 
-    .highlight-content p {
+    .portfolio-content p {
       color: #cbd5e1;
       font-size: 15px;
       line-height: 1.7;
     }
 
-    /* CONTACT */
-    .contact-box {
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 40px 32px;
-      text-align: center;
-      border-radius: 24px;
-      background: rgba(255,255,255,0.045);
-      border: 1px solid rgba(255,255,255,0.07);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.16);
-    }
-
-    .contact-box p {
-      color: #dbe5f4;
-      font-size: 16px;
-      line-height: 1.9;
-      margin-bottom: 10px;
-    }
-
-    .contact-box p:last-child {
-      margin-bottom: 0;
-    }
-
-    .contact-box a {
+    /* links */
+    .contact-link {
       color: #ffb347;
       font-weight: 700;
     }
 
+    /* back home */
     .back-home-wrapper {
       display: flex;
       justify-content: center;
       padding: 10px 20px 36px;
-      background: #07101c;
+      background: linear-gradient(180deg, #07101c 0%, #08111d 100%);
     }
 
     .back-home-btn {
@@ -447,17 +461,110 @@
       border-top: 1px solid rgba(255,255,255,0.05);
     }
 
+    /* floating buttons */
+    .floating-actions {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 1000;
+    }
+
+    .floating-btn {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.28);
+    }
+
+    .floating-book {
+      background: linear-gradient(90deg, #ff8a00, #ffb347);
+      color: #fff;
+    }
+
+    .floating-fb {
+      background: linear-gradient(90deg, #1877f2, #4ea1ff);
+      color: #fff;
+    }
+
+    /* lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 16, 0.88);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 2000;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      width: 100%;
+      max-width: 960px;
+      position: relative;
+      background: #0b1424;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+    }
+
+    .lightbox-content img {
+      width: 100%;
+      max-height: 72vh;
+      object-fit: cover;
+    }
+
+    .lightbox-caption {
+      padding: 18px 22px 24px;
+      color: #dbe5f4;
+      font-size: 15px;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      width: 42px;
+      height: 42px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.45);
+      color: #fff;
+      font-size: 28px;
+      cursor: pointer;
+      z-index: 3;
+    }
+
     @media (max-width: 1100px) {
-      .highlight-grid {
+      .portfolio-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
     @media (max-width: 992px) {
       .hero-box,
-      .split-box,
-      .service-list,
-      .two-col-grid {
+      .about-card,
+      .services-grid,
+      .triple-grid,
+      .dual-grid {
+        grid-template-columns: 1fr;
+      }
+
+      #event-types .services-grid {
         grid-template-columns: 1fr;
       }
 
@@ -501,9 +608,12 @@
         font-size: 34px;
       }
 
-      .text-panel,
-      .side-panel {
+      .about-content {
         text-align: center;
+      }
+
+      .about-visual {
+        min-height: 240px;
       }
     }
 
@@ -522,8 +632,7 @@
         border-radius: 22px;
       }
 
-      .hero-label,
-      .section-badge {
+      .hero-label {
         font-size: 10px;
         letter-spacing: 1.1px;
       }
@@ -538,11 +647,10 @@
 
       .hero-text,
       .section-subtitle,
-      .service-item p,
-      .contact-box p,
-      .text-panel p,
-      .side-panel p,
-      .highlight-content p {
+      .service-card p,
+      .info-box p,
+      .portfolio-content p,
+      .about-content p {
         font-size: 14px;
       }
 
@@ -558,26 +666,32 @@
         width: 100%;
       }
 
-      .highlight-grid {
+      .portfolio-grid {
         grid-template-columns: 1fr;
       }
 
-      .highlight-image {
-        height: 180px;
+      .portfolio-card img {
+        height: 200px;
       }
 
-      .why-cta h3 {
+      .cta-box h3 {
         font-size: 24px;
       }
 
-      .why-cta p {
+      .cta-box p {
         font-size: 16px;
       }
 
-      .contact-box,
-      .text-panel,
-      .side-panel {
-        padding: 28px 20px;
+      .info-box,
+      .about-content,
+      .service-card {
+        padding: 26px 20px;
+      }
+
+      .floating-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 13px;
       }
     }
   </style>
@@ -619,136 +733,61 @@
     </div>
   </header>
 
-  <section id="services" class="section-dark">
+  <section id="services" class="reveal">
     <div class="container">
-      <span class="section-badge">Our Services</span>
       <h2 class="section-title">Our Services</h2>
       <p class="section-subtitle">
-        We provide complete event solutions with professional equipment, technical expertise, and dependable service for all types of occasions.
+        We provide complete event solutions with professional equipment, technical expertise,
+        and dependable service for all types of occasions.
       </p>
 
-      <div class="service-list">
-        <div class="service-item">
-          <h3>LED Wall & Visual Display</h3>
-          <p>High-quality LED wall setup for events, live visuals, presentations, and concerts.</p>
-        </div>
-
-        <div class="service-item">
-          <h3>Roofing & Trusses Setup</h3>
-          <p>Strong and reliable truss and roofing structures for indoor and outdoor events.</p>
-        </div>
-
-        <div class="service-item">
-          <h3>Stage & Production</h3>
-          <p>Complete stage design, setup, and full production support for any event size.</p>
-        </div>
-
-        <div class="service-item">
-          <h3>Band Equipment Rental</h3>
-          <p>Professional instruments and audio gear for live performances and bands.</p>
-        </div>
-
-        <div class="service-item">
-          <h3>Installation Services</h3>
-          <p>Safe and efficient installation of event equipment and technical setups.</p>
-        </div>
-
-        <div class="service-item">
-          <h3>Teleprompter Services</h3>
-          <p>Clear and smooth teleprompter setup for hosts, speakers, and presentations.</p>
-        </div>
-
-        <div class="service-item">
-          <h3>Photo & Video Coverage</h3>
-          <p>Professional photography and videography to capture every important moment.</p>
-        </div>
-
-        <div class="service-item">
-          <h3>Live Feed & Streaming</h3>
-          <p>Real-time video feed and live streaming for events, conferences, and programs.</p>
-        </div>
-
-        <div class="service-item">
-          <h3>Animation & Photo/Video Editing</h3>
-          <p>Creative animations and high-quality editing for events, promotions, and branded visuals.</p>
-        </div>
-
-        <div class="service-item">
-          <h3>Event Consultation</h3>
-          <p>Expert advice and planning support to ensure smooth and successful events.</p>
-        </div>
-
-        <div class="service-item">
-          <h3>Event Management</h3>
-          <p>Full coordination and management from planning to execution.</p>
-        </div>
-
-        <div class="service-item">
-          <h3>Full Event Services</h3>
-          <p>All-in-one event solutions tailored to your needs—complete, reliable, and professional.</p>
-        </div>
+      <div class="services-grid">
+        <div class="service-card"><h3>LED Wall & Visual Display</h3><p>High-quality LED wall setup for events, live visuals, presentations, and concerts.</p></div>
+        <div class="service-card"><h3>Roofing & Trusses Setup</h3><p>Strong and reliable truss and roofing structures for indoor and outdoor events.</p></div>
+        <div class="service-card"><h3>Stage & Production</h3><p>Complete stage design, setup, and full production support for any event size.</p></div>
+        <div class="service-card"><h3>Band Equipment Rental</h3><p>Professional instruments and audio gear for live performances and bands.</p></div>
+        <div class="service-card"><h3>Installation Services</h3><p>Safe and efficient installation of event equipment and technical setups.</p></div>
+        <div class="service-card"><h3>Teleprompter Services</h3><p>Clear and smooth teleprompter setup for hosts, speakers, and presentations.</p></div>
+        <div class="service-card"><h3>Photo & Video Coverage</h3><p>Professional photography and videography to capture every important moment.</p></div>
+        <div class="service-card"><h3>Live Feed & Streaming</h3><p>Real-time video feed and live streaming for events, conferences, and programs.</p></div>
+        <div class="service-card"><h3>Animation & Photo/Video Editing</h3><p>Creative animations and high-quality editing for events, promotions, and branded visuals.</p></div>
+        <div class="service-card"><h3>Event Consultation</h3><p>Expert advice and planning support to ensure smooth and successful events.</p></div>
+        <div class="service-card"><h3>Event Management</h3><p>Full coordination and management from planning to execution.</p></div>
+        <div class="service-card"><h3>Full Event Services</h3><p>All-in-one event solutions tailored to your needs—complete, reliable, and professional.</p></div>
       </div>
     </div>
   </section>
 
-  <section class="section-alt">
+  <section id="event-types" class="reveal">
     <div class="container">
-      <span class="section-badge">Types of Events We Handle</span>
       <h2 class="section-title">Types of Events We Handle</h2>
       <p class="section-subtitle">
         We cater to a wide range of events, delivering professional setup and complete event solutions.
       </p>
 
-      <div class="service-list">
-        <div class="service-item">
-          <h3>Corporate Events</h3>
-          <p>Conferences, product launches, company anniversaries, gala dinners, team-building activities, and award ceremonies.</p>
-        </div>
-
-        <div class="service-item">
-          <h3>Social Events</h3>
-          <p>Weddings, birthdays, anniversaries, reunions, and private parties tailored to your style.</p>
-        </div>
-
-        <div class="service-item">
-          <h3>Concerts & Live Performances</h3>
-          <p>From small-scale gigs to large-venue concerts, we provide the technical expertise to make every performance a success.</p>
-        </div>
-
-        <div class="service-item">
-          <h3>Exhibitions & Trade Shows</h3>
-          <p>We offer comprehensive support for exhibitors, including booth design, lighting, and audio-visual requirements.</p>
-        </div>
+      <div class="services-grid">
+        <div class="service-card"><h3>Corporate Events</h3><p>Conferences, product launches, company anniversaries, gala dinners, team-building activities, and award ceremonies.</p></div>
+        <div class="service-card"><h3>Social Events</h3><p>Weddings, birthdays, anniversaries, reunions, and private parties tailored to your style.</p></div>
+        <div class="service-card"><h3>Concerts & Live Performances</h3><p>From small-scale gigs to large-venue concerts, we provide the technical expertise to make every performance a success.</p></div>
+        <div class="service-card"><h3>Exhibitions & Trade Shows</h3><p>We offer comprehensive support for exhibitors, including booth design, lighting, and audio-visual requirements.</p></div>
       </div>
     </div>
   </section>
 
-  <section class="section-dark">
+  <section id="why-us" class="reveal">
     <div class="container">
-      <span class="section-badge">Why Clients Choose Us</span>
       <h2 class="section-title">Why Clients Choose Us</h2>
       <p class="section-subtitle">
         We don’t just provide services—we deliver professional results that make every event memorable.
       </p>
 
-      <div class="service-list">
-        <div class="service-item">
-          <h3>Proven Experience</h3>
-          <p>Our team has a solid track record of delivering successful events across a wide range of industries.</p>
-        </div>
-
-        <div class="service-item">
-          <h3>Reliability</h3>
-          <p>We are committed to transparency and clear communication, ensuring the process is smooth and stress-free from start to finish.</p>
-        </div>
-
-        <div class="service-item">
-          <h3>Creative Solutions</h3>
-          <p>We’re always finding innovative ways to make your event stand out and leave a memorable impression.</p>
-        </div>
+      <div class="triple-grid">
+        <div class="service-card"><h3>Proven Experience</h3><p>Our team has a solid track record of delivering successful events across a wide range of industries.</p></div>
+        <div class="service-card"><h3>Reliability</h3><p>We are committed to transparency and clear communication, ensuring the process is smooth and stress-free from start to finish.</p></div>
+        <div class="service-card"><h3>Creative Solutions</h3><p>We’re always finding innovative ways to make your event stand out and leave a memorable impression.</p></div>
       </div>
 
-      <div class="why-cta glass-box">
+      <div class="info-box cta-box">
         <h3>Ready to create an event that leaves a lasting impression?</h3>
         <p>Let’s turn your vision into a reality.</p>
         <a href="#contact" class="btn btn-primary">Get in Touch</a>
@@ -756,140 +795,164 @@
     </div>
   </section>
 
-  <section class="section-alt">
+  <section id="about" class="reveal">
     <div class="container">
-      <span class="section-badge">Get in Touch</span>
-      <h2 class="section-title">Get in Touch</h2>
+      <div class="about-card">
+        <div class="about-visual"></div>
 
-      <div class="split-box">
-        <div class="text-panel">
-          <h3>ABOUT US</h3>
-          <p>PPRX Events Management Services was built on the belief that every event, big or small, deserves to be a masterpiece.</p>
-          <p>Our team is passionate about what we do, and we provide tailored solutions designed to meet your specific needs.</p>
-        </div>
+        <div class="about-content">
+          <h2>ABOUT US</h2>
 
-        <div class="side-panel">
-          <h3>Business Overview</h3>
-          <div class="highlight-line">Don’t Just Plan an Event. Create an Experience.</div>
-          <p>Planning an event can be stressful, but with the right team, it can also be an incredible journey. At PPRX Events Management Services, we are experts at transforming ideas into unforgettable experiences. We handle the details so you can enjoy the moment with confidence.</p>
-          <p>Whether it’s an intimate gathering or a large corporate conference, our team provides seamless, start-to-finish event solutions. We pride ourselves on being a trusted partner, combining creativity, precision, and professionalism to ensure every event is a spectacular success.</p>
+          <p>
+            <strong>PPRX Events Management Services</strong> was built on the belief that every event,
+            big or small, deserves to be a masterpiece.
+          </p>
+
+          <p>
+            Our team is passionate about what we do, and we provide tailored solutions
+            designed to meet your specific needs.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section-dark">
+  <section id="overview" class="reveal">
     <div class="container">
-      <span class="section-badge">Mission & Vision</span>
+      <h2 class="section-title">Business Overview</h2>
+      <p class="section-subtitle">
+        Don’t Just Plan an Event. Create an Experience.
+      </p>
+
+      <div class="info-box">
+        <p>
+          Planning an event can be stressful, but with the right team, it can also be an incredible journey.
+          At <strong>PPRX Events Management Services</strong>, we are experts at transforming ideas into unforgettable experiences.
+          We handle the details so you can enjoy the moment with confidence.
+        </p>
+
+        <p>
+          Whether it’s an intimate gathering or a large corporate conference, our team provides seamless,
+          start-to-finish event solutions. We pride ourselves on being a trusted partner, combining creativity,
+          precision, and professionalism to ensure every event is a spectacular success.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="mission-vision" class="reveal">
+    <div class="container">
       <h2 class="section-title">Mission & Vision</h2>
       <p class="section-subtitle">
         The purpose and direction that guide everything we do.
       </p>
 
-      <div class="two-col-grid">
-        <div class="service-item">
+      <div class="dual-grid">
+        <div class="service-card">
           <h3>Our Mission</h3>
-          <p>To provide innovative, reliable, and high-quality event management services, leveraging cutting-edge technology and a passion for perfection to create truly unforgettable moments for our clients and their guests.</p>
+          <p>
+            To provide innovative, reliable, and high-quality event management services,
+            leveraging cutting-edge technology and a passion for perfection to create
+            truly unforgettable moments for our clients and their guests.
+          </p>
         </div>
 
-        <div class="service-item">
+        <div class="service-card">
           <h3>Our Vision</h3>
-          <p>To be the leading events management company in the region, recognized for our creative solutions, professional excellence, and unwavering dedication to client satisfaction.</p>
+          <p>
+            To be the leading events management company in the region, recognized for our
+            creative solutions, professional excellence, and unwavering dedication to client satisfaction.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section-alt">
+  <section id="core-values" class="reveal">
     <div class="container">
-      <span class="section-badge">Core Values</span>
       <h2 class="section-title">Core Values</h2>
       <p class="section-subtitle">
         The principles that define how we work and how we serve our clients.
       </p>
 
-      <div class="service-list">
-        <div class="service-item">
-          <h3>Quality</h3>
-          <p>Giving the best quality result in every event we provide, with excellence in every detail.</p>
-        </div>
-
-        <div class="service-item">
-          <h3>Passion</h3>
-          <p>We bring energy and enthusiasm to every project, creating meaningful and unforgettable experiences.</p>
-        </div>
-
-        <div class="service-item">
-          <h3>Communication</h3>
-          <p>We maintain open, clear, and timely communication from planning to implementation.</p>
-        </div>
+      <div class="triple-grid">
+        <div class="service-card"><h3>Quality</h3><p>Giving the best quality result in every event we provide, with excellence in every detail.</p></div>
+        <div class="service-card"><h3>Passion</h3><p>We bring energy and enthusiasm to every project, creating meaningful and unforgettable experiences.</p></div>
+        <div class="service-card"><h3>Communication</h3><p>We maintain open, clear, and timely communication from planning to implementation.</p></div>
       </div>
     </div>
   </section>
 
-  <section class="section-dark">
+  <section id="process" class="reveal">
     <div class="container">
-      <span class="section-badge">How We Work</span>
       <h2 class="section-title">How We Work</h2>
       <p class="section-subtitle">
         Our approach ensures every event is carefully planned, professionally executed, and memorable from start to finish.
       </p>
 
-      <div class="service-list">
-        <div class="service-item">
+      <div class="triple-grid">
+        <div class="service-card">
           <h3>Customized Planning</h3>
-          <p>We do not believe in one-size-fits-all. We work closely with you to understand your goals and create a detailed plan that brings your unique vision to life.</p>
+          <p>
+            We do not believe in one-size-fits-all. We work closely with you to understand your goals
+            and create a detailed plan that brings your unique vision to life.
+          </p>
         </div>
 
-        <div class="service-item">
+        <div class="service-card">
           <h3>State-of-the-Art Production</h3>
-          <p>We use the latest audio and visual technology to create stunning environments— from professional lighting design and crystal-clear sound to dynamic LED walls.</p>
+          <p>
+            We use the latest audio and visual technology to create stunning environments—
+            from professional lighting design and crystal-clear sound to dynamic LED walls.
+          </p>
         </div>
 
-        <div class="service-item">
+        <div class="service-card">
           <h3>Expert Coordination</h3>
-          <p>Our experienced team manages every aspect of your event, including venue styling, entertainment, and on-the-day coordination, so you can focus on your guests.</p>
+          <p>
+            Our experienced team manages every aspect of your event, including venue styling,
+            entertainment, and on-the-day coordination, so you can focus on your guests.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section-alt">
+  <section id="portfolio" class="reveal">
     <div class="container">
-      <span class="section-badge">Event Highlights</span>
       <h2 class="section-title">Event Highlights</h2>
       <p class="section-subtitle">
         Some of the events and occasions we have handled.
       </p>
 
-      <div class="highlight-grid">
-        <div class="highlight-card">
-          <div class="highlight-image" style="background-image:url('https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80');"></div>
-          <div class="highlight-content">
+      <div class="portfolio-grid">
+        <div class="portfolio-card" data-img="event1.jpg" data-caption="Corporate Event - Professional setup for conferences, launches, and formal company gatherings.">
+          <img src="event1.jpg" alt="Corporate Event">
+          <div class="portfolio-content">
             <h3>Corporate Event</h3>
             <p>Professional setup for conferences, launches, and formal company gatherings.</p>
           </div>
         </div>
 
-        <div class="highlight-card">
-          <div class="highlight-image" style="background-image:url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80');"></div>
-          <div class="highlight-content">
+        <div class="portfolio-card" data-img="event2.jpg" data-caption="Wedding Celebration - Elegant event support for memorable weddings and special family occasions.">
+          <img src="event2.jpg" alt="Wedding Celebration">
+          <div class="portfolio-content">
             <h3>Wedding Celebration</h3>
             <p>Elegant event support for memorable weddings and special family occasions.</p>
           </div>
         </div>
 
-        <div class="highlight-card">
-          <div class="highlight-image" style="background-image:url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1200&q=80');"></div>
-          <div class="highlight-content">
+        <div class="portfolio-card" data-img="event3.jpg" data-caption="Concert & Live Performance - Technical production and reliable equipment for live entertainment events.">
+          <img src="event3.jpg" alt="Concert and Live Performance">
+          <div class="portfolio-content">
             <h3>Concert & Live Performance</h3>
             <p>Technical production and reliable equipment for live entertainment events.</p>
           </div>
         </div>
 
-        <div class="highlight-card">
-          <div class="highlight-image" style="background-image:url('https://images.unsplash.com/photo-1515169067868-5387ec356754?auto=format&fit=crop&w=1200&q=80');"></div>
-          <div class="highlight-content">
+        <div class="portfolio-card" data-img="event4.jpg" data-caption="Exhibition & Trade Show - Complete support for booth setup, visuals, and audio-visual requirements.">
+          <img src="event4.jpg" alt="Exhibition and Trade Show">
+          <div class="portfolio-content">
             <h3>Exhibition & Trade Show</h3>
             <p>Complete support for booth setup, visuals, and audio-visual requirements.</p>
           </div>
@@ -898,18 +961,17 @@
     </div>
   </section>
 
-  <section id="contact" class="section-dark">
+  <section id="contact" class="reveal">
     <div class="container">
-      <span class="section-badge">Contact Us</span>
       <h2 class="section-title">Contact Us</h2>
       <p class="section-subtitle">
         Reach out to us for bookings, inquiries, and complete event solutions.
       </p>
 
-      <div class="contact-box">
-        <p><strong>Phone:</strong> 0939-8048420</p>
-        <p><strong>Email Address:</strong> <a href="mailto:pprxltd@gmail.com">pprxltd@gmail.com</a></p>
-        <p><strong>Facebook:</strong> <a href="#">Visit our Facebook Page</a></p>
+      <div class="info-box contact-lines">
+        <p><strong>Phone:</strong> <a class="contact-link" href="tel:09398048420">0939-8048420</a></p>
+        <p><strong>Email Address:</strong> <a class="contact-link" href="mailto:pprxltd@gmail.com">pprxltd@gmail.com</a></p>
+        <p><strong>Facebook:</strong> <a class="contact-link" href="https://www.facebook.com/share/1AFpgwCBfH/" target="_blank">Visit our Facebook Page</a></p>
         <p><strong>Location:</strong> 8440 Trabajo St. Brgy Olympia, Makati City 1207</p>
       </div>
     </div>
@@ -922,6 +984,68 @@
   <footer>
     © 2026 PPRX Events Management Services | All rights reserved.
   </footer>
+
+  <div class="floating-actions">
+    <a href="#contact" class="floating-btn floating-book">Book</a>
+    <a href="https://www.facebook.com/share/1AFpgwCBfH/" target="_blank" class="floating-btn floating-fb">FB</a>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose">&times;</button>
+      <img id="lightboxImage" src="" alt="Expanded event image">
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
+  <script>
+    const revealItems = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealItems.forEach(item => observer.observe(item));
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightboxImage');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const portfolioCards = document.querySelectorAll('.portfolio-card');
+
+    portfolioCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const img = card.getAttribute('data-img');
+        const caption = card.getAttribute('data-caption');
+        lightboxImage.src = img;
+        lightboxCaption.textContent = caption;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    lightboxClose.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+  </script>
 
 </body>
 </html>
