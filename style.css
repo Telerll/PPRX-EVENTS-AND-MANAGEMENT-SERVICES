@@ -1279,3 +1279,48 @@ footer {
     font-size: 38px;
   }
 }
+/* =========================
+   BUSINESS OVERVIEW FIX
+========================= */
+#overview .overview-box {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 50px;
+  border-radius: 28px;
+}
+
+#overview .overview-box p {
+  font-size: 17px;
+  line-height: 1.9;
+  margin-bottom: 16px;
+}
+
+#overview .overview-box p:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================
+   CONTACT CTA TEXT FIX
+========================= */
+.nav-cta {
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--orange-1), var(--orange-2));
+  color: #fff !important;
+  box-shadow: 0 8px 18px rgba(255, 138, 0, 0.22);
+}
+
+/* =========================
+   MOBILE FIX FOR OVERVIEW
+========================= */
+@media (max-width: 768px) {
+  #overview .overview-box {
+    max-width: 100%;
+    padding: 28px 22px;
+  }
+
+  #overview .overview-box p {
+    font-size: 14px;
+    line-height: 1.75;
+  }
+}
