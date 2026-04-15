@@ -156,7 +156,7 @@ section:nth-of-type(even) {
   text-align: left;
   background:
     linear-gradient(rgba(6, 12, 24, 0.58), rgba(6, 12, 24, 0.90)),
-    var(--hero-bg) center / cover no-repeat;
+    url('hero-bg.jpg') center / cover no-repeat;
   background-color: #07101c;
 }
 
