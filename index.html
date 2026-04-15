@@ -164,8 +164,7 @@
     .portfolio-card,
     .cta-box,
     .contact-info-box,
-    .contact-form-box,
-    .cta-col {
+    .contact-form-box {
       position: relative;
       background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
       border: 1px solid var(--line);
@@ -181,8 +180,7 @@
     .portfolio-card::before,
     .cta-box::before,
     .contact-info-box::before,
-    .contact-form-box::before,
-    .cta-col::before {
+    .contact-form-box::before {
       content: "";
       position: absolute;
       inset: 0;
@@ -198,8 +196,7 @@
     .portfolio-card::after,
     .cta-box::after,
     .contact-info-box::after,
-    .contact-form-box::after,
-    .cta-col::after {
+    .contact-form-box::after {
       content: "";
       position: absolute;
       top: 16px;
@@ -511,8 +508,7 @@
     .info-box:hover,
     .cta-box:hover,
     .contact-info-box:hover,
-    .contact-form-box:hover,
-    .cta-col:hover {
+    .contact-form-box:hover {
       transform: translateY(-6px);
       border-color: rgba(255, 179, 71, 0.34);
       box-shadow: 0 16px 34px rgba(0,0,0,0.24), 0 0 18px rgba(255,153,0,0.06);
@@ -535,8 +531,8 @@
     ========================= */
     .cta-box {
       width: 100%;
-      max-width: 900px;
-      margin: 34px auto 0;
+      max-width: 700px;
+      margin: 0 auto;
       padding: 55px 40px;
       border-radius: 30px;
       text-align: center;
@@ -554,10 +550,10 @@
     }
 
     .cta-box p {
-      color: var(--orange-2);
+      color: var(--muted);
       font-size: 17px;
-      font-weight: 700;
       margin-bottom: 24px;
+      line-height: 1.7;
     }
 
     .cta-box .btn {
@@ -646,16 +642,7 @@
       z-index: 1;
       font-size: 30px;
       color: var(--text);
-      margin-bottom: 16px;
-    }
-
-    .contact-intro {
-      position: relative;
-      z-index: 1;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.8;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .contact-info-list {
@@ -670,6 +657,7 @@
       border-radius: 18px;
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 2px;
     }
 
     .contact-label {
@@ -783,93 +771,11 @@
     }
 
     /* =========================
-       FINAL CTA
+       FINAL CLOSING CTA
     ========================= */
     .cta-final {
       padding: 70px 20px;
       background: linear-gradient(180deg, #07101c 0%, #050911 100%);
-    }
-
-    .cta-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      align-items: stretch;
-    }
-
-    .cta-col {
-      padding: 30px 24px;
-      text-align: left;
-    }
-
-    .cta-col h3 {
-      font-size: 26px;
-      line-height: 1.35;
-      margin-bottom: 14px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .cta-col h4 {
-      font-size: 20px;
-      margin-bottom: 12px;
-      color: var(--orange-2);
-      position: relative;
-      z-index: 1;
-    }
-
-    .cta-col p,
-    .cta-col strong {
-      position: relative;
-      z-index: 1;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .cta-call {
-      margin-top: 10px;
-    }
-
-    .cta-call strong {
-      display: block;
-      margin-bottom: 6px;
-      color: var(--text);
-    }
-
-    .cta-right {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start;
-    }
-
-    .cta-right .btn {
-      margin-top: 16px;
-    }
-
-    .social-icons {
-      display: flex;
-      gap: 12px;
-      margin-top: 10px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .social-icons a {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.06);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      transition: all 0.3s ease;
-    }
-
-    .social-icons a:hover {
-      background: linear-gradient(90deg, var(--orange-1), var(--orange-2));
-      transform: translateY(-2px);
     }
 
     /* =========================
@@ -898,7 +804,7 @@
     .back-home-wrapper {
       display: flex;
       justify-content: center;
-      padding: 10px 20px 36px;
+      padding: 40px 20px 36px;
       background: linear-gradient(180deg, #07101c 0%, #08111d 100%);
     }
 
@@ -924,6 +830,7 @@
       color: #aeb7c5;
       font-size: 14px;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
+      letter-spacing: 0.5px;
     }
 
     /* =========================
@@ -1060,8 +967,7 @@
       .services-grid,
       .triple-grid,
       .dual-grid,
-      .contact-layout,
-      .cta-grid {
+      .contact-layout {
         grid-template-columns: 1fr;
       }
 
@@ -1085,9 +991,7 @@
       }
 
       .hero-right,
-      .about-hex-content,
-      .cta-col,
-      .cta-right {
+      .about-hex-content {
         text-align: center;
       }
 
@@ -1180,12 +1084,10 @@
       .info-box p,
       .portfolio-content p,
       .about-hex-content p,
-      .contact-intro,
       .contact-value,
       .contact-form input,
       .contact-form select,
-      .contact-form textarea,
-      .cta-col p {
+      .contact-form textarea {
         font-size: 14px;
       }
 
@@ -1517,7 +1419,7 @@
 
   <section id="contact" class="reveal">
     <div class="container">
-      <h2 class="section-title">Let’s Plan Your Event</h2>
+      <h2 class="section-title">Ready to create an event that leaves a lasting impression?</h2>
       <p class="section-subtitle">
         Reach out to us for bookings, inquiries, and complete event solutions.
       </p>
@@ -1525,9 +1427,6 @@
       <div class="contact-layout">
         <div class="contact-info-box">
           <h3>Call Us</h3>
-          <p class="contact-intro">
-            Let’s bring your vision to life with professional event solutions tailored to your needs.
-          </p>
 
           <div class="contact-info-list">
             <div class="contact-info-item">
@@ -1536,18 +1435,22 @@
             </div>
 
             <div class="contact-info-item">
+              <span class="contact-label">Address</span>
+              <span class="contact-value">8440 Trabajo St. Brgy Olympia, Makati City 1207</span>
+            </div>
+
+            <div class="contact-info-item">
               <span class="contact-label">Email Address</span>
               <a href="mailto:pprxltd@gmail.com" class="contact-value">pprxltd@gmail.com</a>
             </div>
 
             <div class="contact-info-item">
-              <span class="contact-label">Facebook</span>
-              <a href="https://www.facebook.com/share/1AFpgwCBfH/" target="_blank" class="contact-value">Visit our Facebook Page</a>
-            </div>
-
-            <div class="contact-info-item">
-              <span class="contact-label">Location</span>
-              <span class="contact-value">8440 Trabajo St. Brgy Olympia, Makati City 1207</span>
+              <span class="contact-label">Follow Us</span>
+              <div class="social-icons">
+                <a href="https://www.facebook.com/share/1AFpgwCBfH/" target="_blank">📘</a>
+                <a href="#" target="_blank">❌</a>
+                <a href="#" target="_blank">📸</a>
+              </div>
             </div>
           </div>
         </div>
@@ -1611,38 +1514,12 @@
   </section>
 
   <section class="cta-final reveal">
-    <div class="container cta-grid">
-
-      <div class="cta-col">
-        <h3>Ready to create an event that leaves a lasting impression?</h3>
-
-        <div class="cta-call">
-          <strong>Call Us</strong>
-          <p>📞 0939-804-8420</p>
-        </div>
-      </div>
-
-      <div class="cta-col">
-        <h4>Contact Details</h4>
-        <p>📍 8440 Trabajo St. Brgy Olympia, Makati City 1207</p>
-        <p>📧 <a href="mailto:pprxltd@gmail.com" class="contact-link">pprxltd@gmail.com</a></p>
-
-        <div class="cta-follow">
-          <p style="margin-top:14px; font-weight:600;">Follow Us</p>
-
-          <div class="social-icons">
-            <a href="https://www.facebook.com/share/1AFpgwCBfH/" target="_blank">📘</a>
-            <a href="#" target="_blank">❌</a>
-            <a href="#" target="_blank">📸</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="cta-col cta-right">
-        <h3>Let’s turn your vision into a reality.</h3>
+    <div class="container">
+      <div class="cta-box">
+        <h3>Let’s Plan Your Event</h3>
+        <p>Let’s turn your vision into a reality.</p>
         <a href="#contact" class="btn btn-primary">Get in Touch</a>
       </div>
-
     </div>
   </section>
 
@@ -1651,7 +1528,7 @@
   </div>
 
   <footer>
-    © 2026 PPRX Events Management Services | All rights reserved.
+    © 2026 PPRX Events Management Services | Turning your vision into reality.
   </footer>
 
   <div class="lightbox" id="lightbox">
