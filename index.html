@@ -627,7 +627,7 @@
       display: grid;
       grid-template-columns: 0.95fr 1.05fr;
       gap: 26px;
-      align-items: stretch;
+      align-items: start;
     }
 
     .contact-info-box,
@@ -643,6 +643,15 @@
       font-size: 30px;
       color: var(--text);
       margin-bottom: 20px;
+    }
+
+    .contact-sub-heading {
+      position: relative;
+      z-index: 1;
+      font-size: 24px;
+      color: var(--text);
+      margin: 22px 0 12px;
+      text-align: left;
     }
 
     .contact-info-list {
@@ -1046,7 +1055,8 @@
       }
 
       .contact-info-box h3,
-      .contact-form-box h3 {
+      .contact-form-box h3,
+      .contact-sub-heading {
         font-size: 26px;
       }
     }
@@ -1424,51 +1434,43 @@
         Reach out to us for bookings, inquiries, and complete event solutions.
       </p>
 
-      <div class="contact-info-box">
+      <div class="contact-layout">
+        <div class="contact-info-box">
 
-  <!-- CALL US (NASA LABAS) -->
-  <h3>Call Us</h3>
+          <h3>Call Us</h3>
 
-  <!-- PHONE (NASA LOOB NG SMALL BOX) -->
-  <div class="contact-info-list">
+          <div class="contact-info-list">
+            <div class="contact-info-item">
+              <span class="contact-label">Phone</span>
+              <a href="tel:09398048420" class="contact-value">0939-804-8420</a>
+            </div>
+          </div>
 
-    <div class="contact-info-item">
-      <span class="contact-label">Phone</span>
-      <a href="tel:09398048420" class="contact-value">0939-804-8420</a>
-    </div>
+          <h3 class="contact-sub-heading">Send Us an Email</h3>
 
-  </div>
+          <div class="contact-info-list">
+            <div class="contact-info-item">
+              <span class="contact-label">Email Address</span>
+              <a href="mailto:pprxltd@gmail.com" class="contact-value">pprxltd@gmail.com</a>
+            </div>
 
-  <!-- SEND EMAIL (NASA LABAS) -->
-  <h3 class="contact-sub-heading">Send Us an Email</h3>
+            <div class="contact-info-item">
+              <span class="contact-label">Address</span>
+              <span class="contact-value">
+                8440 Trabajo St. Brgy Olympia, Makati City 1207
+              </span>
+            </div>
 
-  <!-- EMAIL (NASA LOOB NG SMALL BOX) -->
-  <div class="contact-info-list">
-
-    <div class="contact-info-item">
-      <span class="contact-label">Email Address</span>
-      <a href="mailto:pprxltd@gmail.com" class="contact-value">pprxltd@gmail.com</a>
-    </div>
-
-    <div class="contact-info-item">
-      <span class="contact-label">Address</span>
-      <span class="contact-value">
-        8440 Trabajo St. Brgy Olympia, Makati City 1207
-      </span>
-    </div>
-
-    <div class="contact-info-item">
-      <span class="contact-label">Follow Us</span>
-      <div class="social-icons">
-        <a href="https://www.facebook.com/share/1AFpgwCBfH/" target="_blank">📘</a>
-        <a href="#" target="_blank">❌</a>
-        <a href="#" target="_blank">📸</a>
-      </div>
-    </div>
-
-  </div>
-
-</div>
+            <div class="contact-info-item">
+              <span class="contact-label">Follow Us</span>
+              <div class="social-icons">
+                <a href="https://www.facebook.com/share/1AFpgwCBfH/" target="_blank">📘</a>
+                <a href="#" target="_blank">❌</a>
+                <a href="#" target="_blank">📸</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="contact-form-box">
           <h3>Send Us Your Inquiry</h3>
@@ -1528,14 +1530,14 @@
     </div>
   </section>
 
- <section class="cta-final reveal">
-  <div class="container">
-    <div class="cta-box">
-      <h3>Let’s turn your vision into a reality.</h3>
-      <p>We handle the details. You enjoy the moment.</p>
+  <section class="cta-final reveal">
+    <div class="container">
+      <div class="cta-box">
+        <h3>Let’s turn your vision into a reality.</h3>
+        <p>We handle the details. You enjoy the moment.</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <div class="back-home-wrapper">
     <a href="#home" class="back-home-btn">← Back to Home</a>
