@@ -1294,4 +1294,64 @@ footer {
     line-height: 1.75;
   }
 }
+/* =========================
+   MOBILE FIX (IMPORTANT)
+========================= */
+
+/* Force 1 column lahat */
+.services-grid,
+.triple-grid,
+.dual-grid,
+.portfolio-grid,
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr !important;
+  gap: 16px;
+}
+
+/* Fix hero spacing */
+.hero-box {
+  padding: 20px 14px !important;
+  gap: 20px !important;
+}
+
+/* Fix text overflow */
+.hero-text {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Fix cards para hindi dikit dikit */
+.service-card,
+.info-box,
+.contact-info-box,
+.contact-form-box {
+  padding: 20px 16px !important;
+}
+
+/* Fix portfolio image height */
+.portfolio-card img {
+  height: 180px !important;
+}
+
+/* Fix navbar wrap */
+.nav-links {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Fix contact layout */
+.contact-layout {
+  gap: 20px;
+}
+
+/* Fix form */
+.form-grid {
+  grid-template-columns: 1fr !important;
+}
+
+/* Prevent horizontal scroll */
+body {
+  overflow-x: hidden;
+}
 Need modify only few lines. Provide exact replacement block. concise.numerusform
