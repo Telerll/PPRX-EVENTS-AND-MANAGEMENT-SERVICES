@@ -653,7 +653,7 @@ section:nth-of-type(even) {
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
   gap: 26px;
-  align-items: stretch;
+  align-items: start;
 }
 
 .contact-info-box,
@@ -669,6 +669,15 @@ section:nth-of-type(even) {
   font-size: 30px;
   color: var(--text);
   margin-bottom: 16px;
+}
+
+.contact-sub-heading {
+  position: relative;
+  z-index: 1;
+  font-size: 24px;
+  color: var(--text);
+  margin: 22px 0 12px;
+  text-align: left;
 }
 
 .contact-intro {
@@ -692,6 +701,14 @@ section:nth-of-type(even) {
   border-radius: 18px;
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(255,255,255,0.06);
+}
+
+.contact-info-box > .contact-info-item {
+  margin-bottom: 16px;
+}
+
+.contact-info-box > .contact-info-item:last-of-type {
+  margin-bottom: 0;
 }
 
 .contact-label {
@@ -1179,7 +1196,8 @@ footer {
   }
 
   .contact-info-box h3,
-  .contact-form-box h3 {
+  .contact-form-box h3,
+  .contact-sub-heading {
     font-size: 26px;
   }
 }
