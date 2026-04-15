@@ -99,13 +99,73 @@
     }
 
     /* =========================
+       NAVBAR
+    ========================= */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 3000;
+      width: 100%;
+      background: rgba(8, 17, 29, 0.78);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .nav-brand {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: var(--text);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--orange-2);
+    }
+
+    .nav-cta {
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--orange-1), var(--orange-2));
+      color: #fff !important;
+      box-shadow: 0 8px 18px rgba(255, 138, 0, 0.22);
+    }
+
+    /* =========================
        SHARED GLASS
     ========================= */
     .info-box,
     .service-card,
     .about-hex-layout,
     .portfolio-card,
-    .cta-box {
+    .cta-box,
+    .contact-info-box,
+    .contact-form-box,
+    .cta-col {
       position: relative;
       background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
       border: 1px solid var(--line);
@@ -119,7 +179,10 @@
     .service-card::before,
     .about-hex-layout::before,
     .portfolio-card::before,
-    .cta-box::before {
+    .cta-box::before,
+    .contact-info-box::before,
+    .contact-form-box::before,
+    .cta-col::before {
       content: "";
       position: absolute;
       inset: 0;
@@ -133,7 +196,10 @@
     .service-card::after,
     .about-hex-layout::after,
     .portfolio-card::after,
-    .cta-box::after {
+    .cta-box::after,
+    .contact-info-box::after,
+    .contact-form-box::after,
+    .cta-col::after {
       content: "";
       position: absolute;
       top: 16px;
@@ -149,20 +215,21 @@
     /* =========================
        HERO
     ========================= */
-  .hero-section {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 20px;
-  overflow: hidden;
-  text-align: left;
-  background:
-     linear-gradient(rgba(6, 12, 24, 0.30), rgba(6, 12, 24, 0.70)),
-     url('hero-bg.jpg') center 70% / cover no-repeat;
-  background-color: #07101c;
-}
+    .hero-section {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      overflow: hidden;
+      text-align: left;
+      background:
+        linear-gradient(rgba(6, 12, 24, 0.30), rgba(6, 12, 24, 0.70)),
+        url('hero-bg.jpg') center 70% / cover no-repeat;
+      background-color: #07101c;
+    }
+
     .hero-section::before {
       content: "";
       position: absolute;
@@ -442,7 +509,10 @@
     .portfolio-card:hover,
     .about-hex-layout:hover,
     .info-box:hover,
-    .cta-box:hover {
+    .cta-box:hover,
+    .contact-info-box:hover,
+    .contact-form-box:hover,
+    .cta-col:hover {
       transform: translateY(-6px);
       border-color: rgba(255, 179, 71, 0.34);
       box-shadow: 0 16px 34px rgba(0,0,0,0.24), 0 0 18px rgba(255,153,0,0.06);
@@ -555,33 +625,122 @@
     }
 
     /* =========================
-       INFO / CONTACT
+       CONTACT / FORM
     ========================= */
-    .info-box {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 42px 32px 36px;
-      text-align: center;
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 26px;
+      align-items: stretch;
     }
 
-    .info-box p {
+    .contact-info-box,
+    .contact-form-box {
+      padding: 34px 28px;
+      text-align: left;
+    }
+
+    .contact-info-box h3,
+    .contact-form-box h3 {
+      position: relative;
+      z-index: 1;
+      font-size: 30px;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .contact-intro {
+      position: relative;
+      z-index: 1;
       color: var(--muted);
       font-size: 16px;
-      line-height: 1.9;
-      margin-bottom: 14px;
+      line-height: 1.8;
+      margin-bottom: 24px;
     }
 
-    .info-box p:last-child {
-      margin-bottom: 0;
+    .contact-info-list {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 18px;
     }
 
-    .contact-link {
+    .contact-info-item {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .contact-label {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
       color: var(--orange-2);
-      font-weight: 700;
+      margin-bottom: 6px;
     }
 
-    .contact-lines p {
-      margin-bottom: 12px;
+    .contact-value {
+      display: block;
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .contact-form {
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 14px;
+      padding: 14px 14px;
+      color: var(--text);
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: rgba(219, 229, 244, 0.58);
+    }
+
+    .contact-form input:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus {
+      border-color: rgba(255, 179, 71, 0.45);
+      box-shadow: 0 0 0 4px rgba(255, 138, 0, 0.10);
+      background: rgba(255,255,255,0.07);
+    }
+
+    .form-submit-btn {
+      min-width: 190px;
     }
 
     /* =========================
@@ -624,6 +783,96 @@
     }
 
     /* =========================
+       FINAL CTA
+    ========================= */
+    .cta-final {
+      padding: 70px 20px;
+      background: linear-gradient(180deg, #07101c 0%, #050911 100%);
+    }
+
+    .cta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .cta-col {
+      padding: 30px 24px;
+      text-align: left;
+    }
+
+    .cta-col h3 {
+      font-size: 26px;
+      line-height: 1.35;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-col h4 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: var(--orange-2);
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-col p,
+    .cta-col strong {
+      position: relative;
+      z-index: 1;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .cta-call {
+      margin-top: 10px;
+    }
+
+    .cta-call strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .cta-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .cta-right .btn {
+      margin-top: 16px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .social-icons a {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background: linear-gradient(90deg, var(--orange-1), var(--orange-2));
+      transform: translateY(-2px);
+    }
+
+    /* =========================
        BACK HOME / FOOTER
     ========================= */
     .back-home-wrapper {
@@ -655,45 +904,6 @@
       color: #aeb7c5;
       font-size: 14px;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    /* =========================
-       FLOATING BUTTONS
-    ========================= */
-    .floating-actions {
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      z-index: 1000;
-    }
-
-    .floating-btn {
-      width: 54px;
-      height: 54px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .floating-btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .floating-book {
-      background: linear-gradient(90deg, var(--orange-1), var(--orange-2));
-      color: #fff;
-    }
-
-    .floating-fb {
-      background: linear-gradient(90deg, #1877f2, #4ea1ff);
-      color: #fff;
     }
 
     /* =========================
@@ -816,11 +1026,22 @@
     }
 
     @media (max-width: 992px) {
+      .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        gap: 16px;
+      }
+
       .hero-box,
       .about-hex-layout,
       .services-grid,
       .triple-grid,
-      .dual-grid {
+      .dual-grid,
+      .contact-layout,
+      .cta-grid {
         grid-template-columns: 1fr;
       }
 
@@ -843,8 +1064,12 @@
         background: linear-gradient(90deg, var(--orange-1), var(--orange-2), transparent);
       }
 
-      .hero-right {
+      .hero-right,
+      .about-hex-content,
+      .cta-col,
+      .cta-right {
         text-align: center;
+        align-items: center;
       }
 
       .hero-left {
@@ -870,16 +1095,13 @@
       }
 
       .hero-buttons,
-      .hero-tags {
+      .hero-tags,
+      .social-icons {
         justify-content: center;
       }
 
       .section-title {
         font-size: 34px;
-      }
-
-      .about-hex-content {
-        text-align: center;
       }
 
       .hex-cluster {
@@ -893,6 +1115,16 @@
 
       .cta-box h3 {
         font-size: 24px;
+      }
+
+      .contact-info-box,
+      .contact-form-box {
+        padding: 28px 22px;
+      }
+
+      .contact-info-box h3,
+      .contact-form-box h3 {
+        font-size: 26px;
       }
     }
 
@@ -928,7 +1160,13 @@
       .service-card p,
       .info-box p,
       .portfolio-content p,
-      .about-hex-content p {
+      .about-hex-content p,
+      .contact-intro,
+      .contact-value,
+      .contact-form input,
+      .contact-form select,
+      .contact-form textarea,
+      .cta-col p {
         font-size: 14px;
       }
 
@@ -940,10 +1178,12 @@
         flex-direction: column;
       }
 
-      .hero-buttons .btn {
+      .hero-buttons .btn,
+      .form-submit-btn {
         width: 100%;
       }
 
+      .form-grid,
       .portfolio-grid {
         grid-template-columns: 1fr;
       }
@@ -966,12 +1206,6 @@
         padding: 26px 20px;
       }
 
-      .floating-btn {
-        width: 50px;
-        height: 50px;
-        font-size: 13px;
-      }
-
       .about-hex-content h2 {
         font-size: 38px;
       }
@@ -979,6 +1213,20 @@
   </style>
 </head>
 <body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">PPRX</div>
+
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Events</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact" class="nav-cta">Book Now</a></li>
+      </ul>
+    </div>
+  </nav>
 
   <header id="home" class="hero-section">
     <div class="hero-box">
@@ -1067,40 +1315,32 @@
         <div class="service-card"><h3>Reliability</h3><p>We are committed to transparency and clear communication, ensuring the process is smooth and stress-free from start to finish.</p></div>
         <div class="service-card"><h3>Creative Solutions</h3><p>We’re always finding innovative ways to make your event stand out and leave a memorable impression.</p></div>
       </div>
-
-      <div class="info-box cta-box">
-        <h3>Ready to create an event that leaves a lasting impression?</h3>
-        <p>Let’s turn your vision into a reality.</p>
-        <a href="#contact" class="btn btn-primary">Get in Touch</a>
-      </div>
     </div>
   </section>
 
- <section id="about" class="reveal">
-  <div class="container">
-    <div class="about-hex-layout">
+  <section id="about" class="reveal">
+    <div class="container">
+      <div class="about-hex-layout">
+        <div class="about-hex-visual">
+          <img src="hex-bg.png" alt="PPRX Events" class="hex-cluster">
+        </div>
 
-      <div class="about-hex-visual">
-        <img src="hex-bg.png" alt="PPRX Events" class="hex-cluster">
+        <div class="about-hex-content">
+          <h2>ABOUT US</h2>
+
+          <p>
+            <strong>PPRX Events Management Services</strong> was built on the belief that every event,
+            big or small, deserves to be a masterpiece.
+          </p>
+
+          <p>
+            Our team is passionate about what we do, delivering tailored event solutions
+            with professionalism, creativity, and attention to detail.
+          </p>
+        </div>
       </div>
-
-      <div class="about-hex-content">
-        <h2>ABOUT US</h2>
-
-        <p>
-          <strong>PPRX Events Management Services</strong> was built on the belief that every event,
-          big or small, deserves to be a masterpiece.
-        </p>
-
-        <p>
-          Our team is passionate about what we do, delivering tailored event solutions
-          with professionalism, creativity, and attention to detail.
-        </p>
-      </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
   <section id="overview" class="reveal">
     <div class="container">
@@ -1248,17 +1488,132 @@
 
   <section id="contact" class="reveal">
     <div class="container">
-      <h2 class="section-title">Contact Us</h2>
+      <h2 class="section-title">Let’s Plan Your Event</h2>
       <p class="section-subtitle">
         Reach out to us for bookings, inquiries, and complete event solutions.
       </p>
 
-      <div class="info-box contact-lines">
-        <p><strong>Phone:</strong> <a class="contact-link" href="tel:09398048420">0939-8048420</a></p>
-        <p><strong>Email Address:</strong> <a class="contact-link" href="mailto:pprxltd@gmail.com">pprxltd@gmail.com</a></p>
-        <p><strong>Facebook:</strong> <a class="contact-link" href="https://www.facebook.com/share/1AFpgwCBfH/" target="_blank">Visit our Facebook Page</a></p>
-        <p><strong>Location:</strong> 8440 Trabajo St. Brgy Olympia, Makati City 1207</p>
+      <div class="contact-layout">
+        <div class="contact-info-box">
+          <h3>Call Us</h3>
+          <p class="contact-intro">
+            Let’s bring your vision to life with professional event solutions tailored to your needs.
+          </p>
+
+          <div class="contact-info-list">
+            <div class="contact-info-item">
+              <span class="contact-label">Phone</span>
+              <a href="tel:09398048420" class="contact-value">0939-804-8420</a>
+            </div>
+
+            <div class="contact-info-item">
+              <span class="contact-label">Email Address</span>
+              <a href="mailto:pprxltd@gmail.com" class="contact-value">pprxltd@gmail.com</a>
+            </div>
+
+            <div class="contact-info-item">
+              <span class="contact-label">Facebook</span>
+              <a href="https://www.facebook.com/share/1AFpgwCBfH/" target="_blank" class="contact-value">Visit our Facebook Page</a>
+            </div>
+
+            <div class="contact-info-item">
+              <span class="contact-label">Location</span>
+              <span class="contact-value">8440 Trabajo St. Brgy Olympia, Makati City 1207</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-box">
+          <h3>Send Us Your Inquiry</h3>
+
+          <form class="contact-form">
+            <div class="form-group">
+              <label for="eventType">Event Type</label>
+              <select id="eventType" name="eventType">
+                <option value="">Select event type</option>
+                <option>Corporate Event</option>
+                <option>Wedding</option>
+                <option>Birthday / Debut</option>
+                <option>Concert / Live Performance</option>
+                <option>Exhibition / Trade Show</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name">
+              </div>
+
+              <div class="form-group">
+                <label for="contactNumber">Contact Number</label>
+                <input type="text" id="contactNumber" name="contactNumber" placeholder="Enter your contact number">
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="emailAddress">Email Address</label>
+                <input type="email" id="emailAddress" name="emailAddress" placeholder="Enter your email address">
+              </div>
+
+              <div class="form-group">
+                <label for="eventDate">Event Date</label>
+                <input type="date" id="eventDate" name="eventDate">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="venue">Venue / Location</label>
+              <input type="text" id="venue" name="venue" placeholder="Enter your event venue or location">
+            </div>
+
+            <div class="form-group">
+              <label for="message">Event Details / Requirements</label>
+              <textarea id="message" name="message" rows="6" placeholder="Tell us about your event requirements..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary form-submit-btn">Send Inquiry</button>
+          </form>
+        </div>
       </div>
+    </div>
+  </section>
+
+  <section class="cta-final reveal">
+    <div class="container cta-grid">
+
+      <div class="cta-col">
+        <h3>Ready to create an event that leaves a lasting impression?</h3>
+
+        <div class="cta-call">
+          <strong>Call Us</strong>
+          <p>📞 0939-804-8420</p>
+        </div>
+      </div>
+
+      <div class="cta-col">
+        <h4>Contact Details</h4>
+        <p>📍 8440 Trabajo St. Brgy Olympia, Makati City 1207</p>
+        <p>📧 <a href="mailto:pprxltd@gmail.com" class="contact-link">pprxltd@gmail.com</a></p>
+
+        <div class="cta-follow">
+          <p style="margin-top:14px; font-weight:600;">Follow Us</p>
+
+          <div class="social-icons">
+            <a href="https://www.facebook.com/share/1AFpgwCBfH/" target="_blank">📘</a>
+            <a href="#" target="_blank">❌</a>
+            <a href="#" target="_blank">📸</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-col cta-right">
+        <h3>Let’s turn your vision into a reality.</h3>
+        <a href="#contact" class="btn btn-primary">Get in Touch</a>
+      </div>
+
     </div>
   </section>
 
@@ -1269,11 +1624,6 @@
   <footer>
     © 2026 PPRX Events Management Services | All rights reserved.
   </footer>
-
-  <div class="floating-actions">
-    <a href="#contact" class="floating-btn floating-book">Book</a>
-    <a href="https://www.facebook.com/share/1AFpgwCBfH/" target="_blank" class="floating-btn floating-fb">FB</a>
-  </div>
 
   <div class="lightbox" id="lightbox">
     <div class="lightbox-content">
