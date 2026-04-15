@@ -101,19 +101,59 @@
     /* =========================
        NAVBAR
     ========================= */
-    <nav class="navbar">
-  <div class="nav-container">
-    <div class="nav-brand">PPRX</div>
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 3000;
+      width: 100%;
+      background: rgba(8, 17, 29, 0.78);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
 
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#portfolio">Events</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact" class="nav-cta">Contact Us</a></li>
-    </ul>
-  </div>
-</nav>
+    .nav-container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .nav-brand {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: var(--text);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--orange-2);
+    }
+
+    .nav-cta {
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--orange-1), var(--orange-2));
+      color: #fff !important;
+      box-shadow: 0 8px 18px rgba(255, 138, 0, 0.22);
+    }
 
     /* =========================
        SHARED GLASS
@@ -833,6 +873,26 @@
     }
 
     /* =========================
+       BUSINESS OVERVIEW FIX
+    ========================= */
+    #overview .overview-box {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 50px;
+      border-radius: 28px;
+    }
+
+    #overview .overview-box p {
+      font-size: 17px;
+      line-height: 1.9;
+      margin-bottom: 16px;
+    }
+
+    #overview .overview-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* =========================
        BACK HOME / FOOTER
     ========================= */
     .back-home-wrapper {
@@ -1029,7 +1089,6 @@
       .cta-col,
       .cta-right {
         text-align: center;
-        align-items: center;
       }
 
       .hero-left {
@@ -1169,6 +1228,16 @@
       .about-hex-content h2 {
         font-size: 38px;
       }
+
+      #overview .overview-box {
+        max-width: 100%;
+        padding: 28px 22px;
+      }
+
+      #overview .overview-box p {
+        font-size: 14px;
+        line-height: 1.75;
+      }
     }
   </style>
 </head>
@@ -1183,7 +1252,7 @@
         <li><a href="#services">Services</a></li>
         <li><a href="#portfolio">Events</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="#contact" class="nav-cta">Book Now</a></li>
+        <li><a href="#contact" class="nav-cta">Contact Us</a></li>
       </ul>
     </div>
   </nav>
@@ -1302,26 +1371,28 @@
     </div>
   </section>
 
-  <h2 class="section-title">Business Overview</h2>
-    <p class="section-subtitle">
-      Don’t Just Plan an Event. Create an Experience.
-    </p>
-
-    <div class="info-box overview-box">
-      <p>
-        Planning an event can be stressful, but with the right team, it can also be an incredible journey.
-        At <strong>PPRX Events Management Services</strong>, we are experts at transforming ideas into unforgettable experiences.
-        We handle the details so you can enjoy the moment with confidence.
+  <section id="overview" class="reveal">
+    <div class="container">
+      <h2 class="section-title">Business Overview</h2>
+      <p class="section-subtitle">
+        Don’t Just Plan an Event. Create an Experience.
       </p>
 
-      <p>
-        Whether it’s an intimate gathering or a large corporate conference, our team provides seamless,
-        start-to-finish event solutions. We pride ourselves on being a trusted partner, combining creativity,
-        precision, and professionalism to ensure every event is a spectacular success.
-      </p>
+      <div class="info-box overview-box">
+        <p>
+          Planning an event can be stressful, but with the right team, it can also be an incredible journey.
+          At <strong>PPRX Events Management Services</strong>, we are experts at transforming ideas into unforgettable experiences.
+          We handle the details so you can enjoy the moment with confidence.
+        </p>
+
+        <p>
+          Whether it’s an intimate gathering or a large corporate conference, our team provides seamless,
+          start-to-finish event solutions. We pride ourselves on being a trusted partner, combining creativity,
+          precision, and professionalism to ensure every event is a spectacular success.
+        </p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <section id="mission-vision" class="reveal">
     <div class="container">
