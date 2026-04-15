@@ -19,7 +19,6 @@
   --orange-2: #ffb347;
   --radius: 24px;
   --shadow: 0 12px 34px rgba(0, 0, 0, 0.22);
-  --hero-bg: url('hero-bg.jpg');
 }
 
 html {
@@ -136,11 +135,12 @@ section:nth-of-type(even) {
   color: var(--muted);
   font-size: 14px;
   font-weight: 600;
-  transition: color 0.25s ease;
+  transition: color 0.25s ease, transform 0.25s ease;
 }
 
 .nav-links a:hover {
   color: var(--orange-2);
+  transform: translateY(-1px);
 }
 
 .nav-cta {
@@ -152,7 +152,7 @@ section:nth-of-type(even) {
 }
 
 /* =========================
-   SHARED GLASS UI
+   SHARED GLASS
 ========================= */
 .info-box,
 .service-card,
@@ -222,7 +222,7 @@ section:nth-of-type(even) {
   text-align: left;
   background:
     linear-gradient(rgba(6, 12, 24, 0.30), rgba(6, 12, 24, 0.70)),
-    var(--hero-bg) center 70% / cover no-repeat;
+    url('hero-bg.jpg') center 70% / cover no-repeat;
   background-color: #07101c;
 }
 
@@ -233,12 +233,7 @@ section:nth-of-type(even) {
   backdrop-filter: blur(6px);
   background:
     radial-gradient(circle at top left, rgba(0, 102, 255, 0.08), transparent 28%),
-    linear-gradient(
-      to bottom,
-      rgba(7, 12, 24, 0.18),
-      rgba(7, 12, 24, 0.42),
-      rgba(7, 12, 24, 0.78)
-    );
+    linear-gradient(to bottom, rgba(7, 12, 24, 0.2), rgba(7, 12, 24, 0.45), rgba(7, 12, 24, 0.75));
 }
 
 .hero-box {
@@ -281,9 +276,7 @@ section:nth-of-type(even) {
   height: 90px;
   border-radius: 999px;
   background: linear-gradient(180deg, var(--orange-1), var(--orange-2), transparent);
-  box-shadow:
-    0 0 12px rgba(255,138,0,0.55),
-    0 0 22px rgba(255,179,71,0.25);
+  box-shadow: 0 0 12px rgba(255,138,0,0.55), 0 0 22px rgba(255,179,71,0.25);
   animation: glowPulse 2.4s ease-in-out infinite;
 }
 
@@ -403,16 +396,12 @@ section:nth-of-type(even) {
 .btn-primary {
   background: linear-gradient(90deg, var(--orange-1), var(--orange-2));
   color: #ffffff;
-  box-shadow:
-    0 8px 20px rgba(255, 138, 0, 0.30),
-    0 0 18px rgba(255, 153, 0, 0.14);
+  box-shadow: 0 8px 20px rgba(255, 138, 0, 0.30), 0 0 18px rgba(255, 153, 0, 0.14);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px) scale(1.03);
-  box-shadow:
-    0 14px 30px rgba(255, 138, 0, 0.45),
-    0 0 22px rgba(255, 153, 0, 0.2);
+  box-shadow: 0 14px 30px rgba(255, 138, 0, 0.45), 0 0 22px rgba(255, 153, 0, 0.2);
 }
 
 .btn-secondary {
@@ -522,9 +511,7 @@ section:nth-of-type(even) {
 .cta-col:hover {
   transform: translateY(-6px);
   border-color: rgba(255, 179, 71, 0.34);
-  box-shadow:
-    0 16px 34px rgba(0,0,0,0.24),
-    0 0 18px rgba(255,153,0,0.06);
+  box-shadow: 0 16px 34px rgba(0,0,0,0.24), 0 0 18px rgba(255,153,0,0.06);
 }
 
 .service-card h3 {
@@ -659,10 +646,6 @@ section:nth-of-type(even) {
   font-weight: 700;
 }
 
-.contact-lines p {
-  margin-bottom: 12px;
-}
-
 /* =========================
    CONTACT WITH FORM
 ========================= */
@@ -748,6 +731,7 @@ section:nth-of-type(even) {
   font-weight: 700;
   color: var(--text);
   margin-bottom: 8px;
+  text-align: left;
 }
 
 .contact-form input,
@@ -918,6 +902,26 @@ section:nth-of-type(even) {
 }
 
 /* =========================
+   BUSINESS OVERVIEW FIX
+========================= */
+#overview .overview-box {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 50px;
+  border-radius: 28px;
+}
+
+#overview .overview-box p {
+  font-size: 17px;
+  line-height: 1.9;
+  margin-bottom: 16px;
+}
+
+#overview .overview-box p:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================
    BACK HOME / FOOTER
 ========================= */
 .back-home-wrapper {
@@ -953,19 +957,6 @@ footer {
   color: #aeb7c5;
   font-size: 14px;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-/* =========================
-   FLOATING BUTTONS
-========================= */
-.floating-actions {
-  display: none;
-}
-
-.floating-btn,
-.floating-book,
-.floating-fb {
-  display: none;
 }
 
 /* =========================
@@ -1169,10 +1160,6 @@ footer {
     font-size: 34px;
   }
 
-  .about-hex-content {
-    text-align: center;
-  }
-
   .hex-cluster {
     max-width: 420px;
   }
@@ -1278,42 +1265,7 @@ footer {
   .about-hex-content h2 {
     font-size: 38px;
   }
-}
-/* =========================
-   BUSINESS OVERVIEW FIX
-========================= */
-#overview .overview-box {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 48px 50px;
-  border-radius: 28px;
-}
 
-#overview .overview-box p {
-  font-size: 17px;
-  line-height: 1.9;
-  margin-bottom: 16px;
-}
-
-#overview .overview-box p:last-child {
-  margin-bottom: 0;
-}
-
-/* =========================
-   CONTACT CTA TEXT FIX
-========================= */
-.nav-cta {
-  padding: 10px 18px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--orange-1), var(--orange-2));
-  color: #fff !important;
-  box-shadow: 0 8px 18px rgba(255, 138, 0, 0.22);
-}
-
-/* =========================
-   MOBILE FIX FOR OVERVIEW
-========================= */
-@media (max-width: 768px) {
   #overview .overview-box {
     max-width: 100%;
     padding: 28px 22px;
