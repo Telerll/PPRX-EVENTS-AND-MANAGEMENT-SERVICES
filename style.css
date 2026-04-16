@@ -1222,8 +1222,8 @@ footer {
   }
 
   .hero-box {
-    padding: 20px 14px !important;
-    gap: 20px !important;
+    padding: 20px 14px;
+    gap: 20px;
     border-radius: 22px;
   }
 
@@ -1259,15 +1259,6 @@ footer {
     font-size: 28px;
   }
 
-  .hero-buttons {
-    flex-direction: column;
-  }
-
-  .hero-buttons .btn,
-  .form-submit-btn {
-    width: 100%;
-  }
-
   .services-grid,
   .triple-grid,
   .dual-grid,
@@ -1278,8 +1269,17 @@ footer {
     gap: 16px;
   }
 
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+  .hero-buttons .btn,
+  .form-submit-btn {
+    width: 100%;
+  }
+
   .portfolio-card img {
-    height: 180px !important;
+    height: 180px;
   }
 
   .cta-box h3 {
@@ -1295,11 +1295,17 @@ footer {
   .about-hex-layout,
   .contact-info-box,
   .contact-form-box {
-    padding: 20px 16px !important;
+    padding: 20px 16px;
   }
 
   .about-hex-content h2 {
     font-size: 38px;
+  }
+
+  .nav-links,
+  .hero-tags,
+  .social-icons {
+    justify-content: center;
   }
 
   #overview .overview-box {
@@ -1310,9 +1316,5 @@ footer {
   #overview .overview-box p {
     font-size: 14px;
     line-height: 1.75;
-  }
-
-  .nav-links {
-    justify-content: center;
   }
 }
