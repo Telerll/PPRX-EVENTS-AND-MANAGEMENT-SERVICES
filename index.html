@@ -142,11 +142,12 @@
       color: var(--muted);
       font-size: 14px;
       font-weight: 600;
-      transition: color 0.25s ease;
+      transition: color 0.25s ease, transform 0.25s ease;
     }
 
     .nav-links a:hover {
       color: var(--orange-2);
+      transform: translateY(-1px);
     }
 
     .nav-cta {
@@ -683,6 +684,13 @@
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.06);
       margin-bottom: 2px;
+      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    }
+
+    .contact-info-item:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255,179,71,0.25);
+      background: rgba(255,255,255,0.05);
     }
 
     .contact-label {
@@ -739,7 +747,7 @@
       color: var(--text);
       font-size: 15px;
       outline: none;
-      transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, transform 0.25s ease;
     }
 
     .contact-form input::placeholder,
@@ -753,6 +761,7 @@
       border-color: rgba(255, 179, 71, 0.45);
       box-shadow: 0 0 0 4px rgba(255, 138, 0, 0.10);
       background: rgba(255,255,255,0.07);
+      transform: translateY(-1px);
     }
 
     .contact-form textarea {
@@ -788,10 +797,6 @@
       display: inline-block;
     }
 
-    .is-loading .btn-text {
-      opacity: 1;
-    }
-
     .form-status-inline {
       display: none;
       margin-top: 14px;
@@ -805,6 +810,7 @@
 
     .form-status-inline.show {
       display: block;
+      animation: fadeInSoft 0.35s ease both;
     }
 
     .form-status-inline.success {
@@ -849,10 +855,12 @@
 
     .toast.success {
       border-color: rgba(22, 163, 74, 0.35);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.35), 0 0 18px rgba(22,163,74,0.12);
     }
 
     .toast.error {
       border-color: rgba(220, 38, 38, 0.35);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.35), 0 0 18px rgba(220,38,38,0.12);
     }
 
     .toast-title {
@@ -865,6 +873,35 @@
       font-size: 14px;
       color: var(--muted-2);
       line-height: 1.6;
+    }
+
+    /* =========================
+       SOCIAL ICONS
+    ========================= */
+    .social-icons {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .social-icons a {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      background: linear-gradient(90deg, var(--orange-1), var(--orange-2));
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(255,138,0,0.20);
     }
 
     /* =========================
@@ -887,6 +924,11 @@
       height: 220px;
       object-fit: cover;
       display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .portfolio-card:hover img {
+      transform: scale(1.04);
     }
 
     .portfolio-content {
@@ -996,6 +1038,7 @@
       border-radius: 22px;
       overflow: hidden;
       box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+      animation: fadeInSoft 0.35s ease both;
     }
 
     .lightbox-content img {
@@ -1635,9 +1678,10 @@
         <div class="contact-form-box">
           <h3>Send Us Your Inquiry</h3>
 
-          <form class="contact-form" id="contactForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
-            <input type="hidden" name="_subject" value="New Inquiry - PPRX Website">
+          <form class="contact-form" id="contactForm" action="https://formsubmit.co/pprxltd@gmail.com" method="POST">
             <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_subject" value="New Inquiry - PPRX Website">
 
             <div class="form-group">
               <label for="eventType">Event Type</label>
@@ -1688,7 +1732,7 @@
 
             <button type="submit" class="btn btn-primary form-submit-btn" id="submitBtn">
               <span class="btn-loading" id="btnLoadingWrap">
-                <span class="spinner" id="spinner"></span>
+                <span class="spinner"></span>
                 <span class="btn-text" id="btnText">Send Inquiry</span>
               </span>
             </button>
@@ -1821,50 +1865,45 @@
       }
     }
 
-    contactForm.addEventListener('submit', async function (e) {
-      e.preventDefault();
-      clearInlineStatus();
+    if (contactForm) {
+      contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        clearInlineStatus();
 
-      if (!contactForm.checkValidity()) {
-        contactForm.reportValidity();
-        return;
-      }
-
-      setLoading(true);
-
-      try {
-        const formData = new FormData(contactForm);
-
-        const response = await fetch(contactForm.action, {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'Accept': 'application/json'
-          }
-        });
-
-        if (response.ok) {
-          contactForm.reset();
-          showInlineStatus('success', 'Thank you. Your inquiry has been sent successfully.');
-          showToast('success', 'Inquiry Sent', 'Your message was successfully sent to PPRX Events Management Services.');
-        } else {
-          let errorMessage = 'Something went wrong. Please try again.';
-          try {
-            const data = await response.json();
-            if (data && data.errors && data.errors.length > 0) {
-              errorMessage = data.errors.map(err => err.message).join(', ');
-            }
-          } catch (jsonError) {}
-          showInlineStatus('error', errorMessage);
-          showToast('error', 'Submission Failed', errorMessage);
+        if (!contactForm.checkValidity()) {
+          contactForm.reportValidity();
+          return;
         }
-      } catch (error) {
-        showInlineStatus('error', 'Network error. Please check your connection and try again.');
-        showToast('error', 'Network Error', 'Please check your internet connection and try again.');
-      } finally {
-        setLoading(false);
-      }
-    });
+
+        setLoading(true);
+
+        try {
+          const formData = new FormData(contactForm);
+
+          const response = await fetch(contactForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            contactForm.reset();
+            showInlineStatus('success', 'Thank you. Your inquiry has been sent successfully.');
+            showToast('success', 'Inquiry Sent', 'Your message was successfully sent to PPRX Events Management Services.');
+          } else {
+            showInlineStatus('error', 'Something went wrong. Please try again.');
+            showToast('error', 'Submission Failed', 'Something went wrong. Please try again.');
+          }
+        } catch (error) {
+          showInlineStatus('error', 'Network error. Please check your connection and try again.');
+          showToast('error', 'Network Error', 'Please check your internet connection and try again.');
+        } finally {
+          setLoading(false);
+        }
+      });
+    }
   </script>
 
 </body>
