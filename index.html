@@ -490,6 +490,9 @@
 
     #why-us .service-card {
       min-height: 190px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .service-card {
@@ -497,13 +500,6 @@
       text-align: center;
       transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
       min-height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .service-card > div {
-      width: 100%;
     }
 
     .service-card:hover,
@@ -631,13 +627,16 @@
       display: grid;
       grid-template-columns: 0.95fr 1.05fr;
       gap: 26px;
-      align-items: start;
+      align-items: stretch;
     }
 
     .contact-info-box,
     .contact-form-box {
       padding: 34px 28px;
       text-align: left;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
     .contact-info-box h3,
@@ -663,6 +662,10 @@
       z-index: 1;
       display: grid;
       gap: 18px;
+    }
+
+    .contact-info-list:last-of-type {
+      flex-grow: 1;
     }
 
     .contact-info-item {
@@ -692,6 +695,9 @@
     .contact-form {
       position: relative;
       z-index: 1;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
     }
 
     .form-grid {
@@ -740,8 +746,15 @@
       background: rgba(255,255,255,0.07);
     }
 
+    .contact-form textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
     .form-submit-btn {
       min-width: 190px;
+      margin-top: auto;
+      align-self: flex-start;
     }
 
     /* =========================
@@ -979,7 +992,10 @@
       .about-hex-layout,
       .services-grid,
       .triple-grid,
-      .dual-grid,
+      .dual-grid {
+        grid-template-columns: 1fr;
+      }
+
       .contact-layout {
         grid-template-columns: 1fr;
       }
@@ -1118,6 +1134,10 @@
         width: 100%;
       }
 
+      .form-submit-btn {
+        align-self: stretch;
+      }
+
       .form-grid,
       .portfolio-grid {
         grid-template-columns: 1fr;
@@ -1137,7 +1157,9 @@
 
       .info-box,
       .service-card,
-      .about-hex-layout {
+      .about-hex-layout,
+      .contact-info-box,
+      .contact-form-box {
         padding: 26px 20px;
       }
 
