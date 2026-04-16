@@ -653,13 +653,19 @@ section:nth-of-type(even) {
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
   gap: 26px;
-  align-items: start;
+  align-items: stretch;
 }
 
 .contact-info-box,
 .contact-form-box {
   padding: 34px 28px;
   text-align: left;
+  height: 100%;
+}
+
+.contact-info-box {
+  display: flex;
+  flex-direction: column;
 }
 
 .contact-info-box h3,
@@ -694,6 +700,10 @@ section:nth-of-type(even) {
   z-index: 1;
   display: grid;
   gap: 18px;
+}
+
+.contact-info-list:last-of-type {
+  flex-grow: 1;
 }
 
 .contact-info-item {
@@ -1212,7 +1222,8 @@ footer {
   }
 
   .hero-box {
-    padding: 24px 16px;
+    padding: 20px 14px !important;
+    gap: 20px !important;
     border-radius: 22px;
   }
 
@@ -1257,13 +1268,18 @@ footer {
     width: 100%;
   }
 
-  .form-grid,
-  .portfolio-grid {
-    grid-template-columns: 1fr;
+  .services-grid,
+  .triple-grid,
+  .dual-grid,
+  .portfolio-grid,
+  .contact-layout,
+  .form-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
   }
 
   .portfolio-card img {
-    height: 200px;
+    height: 180px !important;
   }
 
   .cta-box h3 {
@@ -1276,8 +1292,10 @@ footer {
 
   .info-box,
   .service-card,
-  .about-hex-layout {
-    padding: 26px 20px;
+  .about-hex-layout,
+  .contact-info-box,
+  .contact-form-box {
+    padding: 20px 16px !important;
   }
 
   .about-hex-content h2 {
@@ -1293,65 +1311,8 @@ footer {
     font-size: 14px;
     line-height: 1.75;
   }
-}
-/* =========================
-   MOBILE FIX (IMPORTANT)
-========================= */
 
-/* Force 1 column lahat */
-.services-grid,
-.triple-grid,
-.dual-grid,
-.portfolio-grid,
-.contact-layout {
-  display: grid;
-  grid-template-columns: 1fr !important;
-  gap: 16px;
+  .nav-links {
+    justify-content: center;
+  }
 }
-
-/* Fix hero spacing */
-.hero-box {
-  padding: 20px 14px !important;
-  gap: 20px !important;
-}
-
-/* Fix text overflow */
-.hero-text {
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-/* Fix cards para hindi dikit dikit */
-.service-card,
-.info-box,
-.contact-info-box,
-.contact-form-box {
-  padding: 20px 16px !important;
-}
-
-/* Fix portfolio image height */
-.portfolio-card img {
-  height: 180px !important;
-}
-
-/* Fix navbar wrap */
-.nav-links {
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-/* Fix contact layout */
-.contact-layout {
-  gap: 20px;
-}
-
-/* Fix form */
-.form-grid {
-  grid-template-columns: 1fr !important;
-}
-
-/* Prevent horizontal scroll */
-body {
-  overflow-x: hidden;
-}
-just edit this current css and regenerate whole css no explaination just the corrected whole css
