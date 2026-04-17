@@ -876,6 +876,95 @@
     }
 
     /* =========================
+       SUCCESS POPUP / LEVEL 2
+    ========================= */
+    .success-popup {
+      position: fixed;
+      inset: 0;
+      background: rgba(2, 6, 16, 0.72);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 6000;
+      backdrop-filter: blur(6px);
+    }
+
+    .success-popup.show {
+      display: flex;
+      animation: fadeInSoft 0.25s ease both;
+    }
+
+    .success-box {
+      width: 100%;
+      max-width: 460px;
+      padding: 34px 28px;
+      border-radius: 24px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(11,20,36,0.98), rgba(14,24,40,0.96));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 22px 50px rgba(0,0,0,0.38), 0 0 24px rgba(22,163,74,0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .success-box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.05), transparent 22%),
+        linear-gradient(90deg, rgba(22,163,74,0.10), transparent 22%);
+    }
+
+    .success-box .success-icon {
+      width: 74px;
+      height: 74px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      background: rgba(22, 163, 74, 0.16);
+      border: 1px solid rgba(22, 163, 74, 0.26);
+      box-shadow: 0 0 18px rgba(22,163,74,0.12);
+      color: #dcfce7;
+    }
+
+    .success-box h2 {
+      font-size: 30px;
+      line-height: 1.2;
+      margin-bottom: 10px;
+      color: #ffffff;
+    }
+
+    .success-box p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.75;
+      margin-bottom: 22px;
+    }
+
+    .success-box button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--orange-1), var(--orange-2));
+      color: #ffffff;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(255,138,0,0.24);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .success-box button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 24px rgba(255,138,0,0.30);
+    }
+
+    /* =========================
        SOCIAL ICONS
     ========================= */
     .social-icons {
@@ -1343,6 +1432,18 @@
         min-width: auto;
         max-width: none;
       }
+
+      .success-box {
+        padding: 28px 20px;
+      }
+
+      .success-box h2 {
+        font-size: 24px;
+      }
+
+      .success-box p {
+        font-size: 15px;
+      }
     }
   </style>
 </head>
@@ -1630,125 +1731,125 @@
     </div>
   </section>
 
- <section id="contact" class="reveal">
-  <div class="container">
-    <h2 class="section-title">Ready to create an event that leaves a lasting impression?</h2>
-    <p class="section-subtitle">
-      Reach out to us for bookings, inquiries, and complete event solutions.
-    </p>
+  <section id="contact" class="reveal">
+    <div class="container">
+      <h2 class="section-title">Ready to create an event that leaves a lasting impression?</h2>
+      <p class="section-subtitle">
+        Reach out to us for bookings, inquiries, and complete event solutions.
+      </p>
 
-    <div class="contact-layout">
-      <div class="contact-info-box">
+      <div class="contact-layout">
+        <div class="contact-info-box">
 
-        <h3>Call Us</h3>
+          <h3>Call Us</h3>
 
-        <div class="contact-info-list">
-          <div class="contact-info-item">
-            <span class="contact-label">Phone</span>
-            <a href="tel:09398048420" class="contact-value">0939-804-8420</a>
+          <div class="contact-info-list">
+            <div class="contact-info-item">
+              <span class="contact-label">Phone</span>
+              <a href="tel:09398048420" class="contact-value">0939-804-8420</a>
+            </div>
+
+            <div class="contact-info-item">
+              <span class="contact-label">Viber</span>
+              <a href="viber://chat?number=%2B639398048420" class="contact-value">
+                Chat on Viber
+              </a>
+            </div>
           </div>
 
-          <div class="contact-info-item">
-            <span class="contact-label">Viber</span>
-            <a href="viber://chat?number=%2B639398048420" class="contact-value">
-              Chat on Viber
-            </a>
-          </div>
-        </div>
+          <h3 class="contact-sub-heading">Send Us an Email</h3>
 
-        <h3 class="contact-sub-heading">Send Us an Email</h3>
+          <div class="contact-info-list">
+            <div class="contact-info-item">
+              <span class="contact-label">Email Address</span>
+              <a href="mailto:pprxltd@gmail.com" class="contact-value">pprxltd@gmail.com</a>
+            </div>
 
-        <div class="contact-info-list">
-          <div class="contact-info-item">
-            <span class="contact-label">Email Address</span>
-            <a href="mailto:pprxltd@gmail.com" class="contact-value">pprxltd@gmail.com</a>
-          </div>
+            <div class="contact-info-item">
+              <span class="contact-label">Address</span>
+              <span class="contact-value">
+                8440 Trabajo St. Brgy Olympia, Makati City 1207
+              </span>
+            </div>
 
-          <div class="contact-info-item">
-            <span class="contact-label">Address</span>
-            <span class="contact-value">
-              8440 Trabajo St. Brgy Olympia, Makati City 1207
-            </span>
-          </div>
-
-          <div class="contact-info-item">
-            <span class="contact-label">Follow Us</span>
-            <div class="social-icons">
-              <a href="https://www.facebook.com/share/1AFpgwCBfH/" target="_blank" title="Facebook">📘</a>
+            <div class="contact-info-item">
+              <span class="contact-label">Follow Us</span>
+              <div class="social-icons">
+                <a href="https://www.facebook.com/share/1AFpgwCBfH/" target="_blank" title="Facebook">📘</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="contact-form-box">
-        <h3>Send Us Your Inquiry</h3>
+        <div class="contact-form-box">
+          <h3>Send Us Your Inquiry</h3>
 
-        <form class="contact-form" id="contactForm" action="https://formsubmit.co/pprxltd@gmail.com" method="POST">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_subject" value="New Inquiry - PPRX Website">
+          <form class="contact-form" id="contactForm" action="https://formsubmit.co/pprxltd@gmail.com" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_subject" value="New Inquiry - PPRX Website">
 
-          <div class="form-group">
-            <label for="eventType">Event Type</label>
-            <select id="eventType" name="eventType" required>
-              <option value="">Select event type</option>
-              <option>Corporate Event</option>
-              <option>Wedding</option>
-              <option>Birthday / Debut</option>
-              <option>Concert / Live Performance</option>
-              <option>Exhibition / Trade Show</option>
-              <option>Other</option>
-            </select>
-          </div>
-
-          <div class="form-grid">
             <div class="form-group">
-              <label for="fullName">Full Name</label>
-              <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+              <label for="eventType">Event Type</label>
+              <select id="eventType" name="eventType" required>
+                <option value="">Select event type</option>
+                <option>Corporate Event</option>
+                <option>Wedding</option>
+                <option>Birthday / Debut</option>
+                <option>Concert / Live Performance</option>
+                <option>Exhibition / Trade Show</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contactNumber">Contact Number</label>
+                <input type="text" id="contactNumber" name="contactNumber" placeholder="Enter your contact number" required>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="emailAddress">Email Address</label>
+                <input type="email" id="emailAddress" name="email" placeholder="Enter your email address" required>
+              </div>
+
+              <div class="form-group">
+                <label for="eventDate">Event Date</label>
+                <input type="date" id="eventDate" name="eventDate">
+              </div>
             </div>
 
             <div class="form-group">
-              <label for="contactNumber">Contact Number</label>
-              <input type="text" id="contactNumber" name="contactNumber" placeholder="Enter your contact number" required>
-            </div>
-          </div>
-
-          <div class="form-grid">
-            <div class="form-group">
-              <label for="emailAddress">Email Address</label>
-              <input type="email" id="emailAddress" name="email" placeholder="Enter your email address" required>
+              <label for="venue">Venue / Location</label>
+              <input type="text" id="venue" name="venue" placeholder="Enter your event venue or location">
             </div>
 
             <div class="form-group">
-              <label for="eventDate">Event Date</label>
-              <input type="date" id="eventDate" name="eventDate">
+              <label for="message">Event Details / Requirements</label>
+              <textarea id="message" name="message" rows="6" placeholder="Tell us about your event requirements..." required></textarea>
             </div>
-          </div>
 
-          <div class="form-group">
-            <label for="venue">Venue / Location</label>
-            <input type="text" id="venue" name="venue" placeholder="Enter your event venue or location">
-          </div>
+            <button type="submit" class="btn btn-primary form-submit-btn" id="submitBtn">
+              <span class="btn-loading" id="btnLoadingWrap">
+                <span class="spinner"></span>
+                <span class="btn-text" id="btnText">Send Inquiry</span>
+              </span>
+            </button>
 
-          <div class="form-group">
-            <label for="message">Event Details / Requirements</label>
-            <textarea id="message" name="message" rows="6" placeholder="Tell us about your event requirements..." required></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-primary form-submit-btn" id="submitBtn">
-            <span class="btn-loading" id="btnLoadingWrap">
-              <span class="spinner"></span>
-              <span class="btn-text" id="btnText">Send Inquiry</span>
-            </span>
-          </button>
-
-          <div class="form-status-inline" id="formStatus"></div>
-        </form>
+            <div class="form-status-inline" id="formStatus"></div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-</section>
-  
+  </section>
+
   <section class="cta-final reveal">
     <div class="container">
       <div class="cta-box">
@@ -1777,6 +1878,15 @@
   <div class="toast" id="toast">
     <div class="toast-title" id="toastTitle">Success</div>
     <div class="toast-message" id="toastMessage">Your inquiry has been sent.</div>
+  </div>
+
+  <div id="successPopup" class="success-popup">
+    <div class="success-box">
+      <div class="success-icon">✔</div>
+      <h2>Inquiry Sent</h2>
+      <p>Thank you! Your inquiry has been received. Our team will contact you shortly.</p>
+      <button type="button" onclick="closePopup()">OK</button>
+    </div>
   </div>
 
   <script>
@@ -1834,6 +1944,8 @@
     const toast = document.getElementById('toast');
     const toastTitle = document.getElementById('toastTitle');
     const toastMessage = document.getElementById('toastMessage');
+    const btnText = document.getElementById('btnText');
+    const successPopup = document.getElementById('successPopup');
 
     let toastTimer;
 
@@ -1862,13 +1974,29 @@
       if (isLoading) {
         submitBtn.disabled = true;
         btnLoadingWrap.classList.add('is-loading');
-        document.getElementById('btnText').textContent = 'Sending...';
+        btnText.textContent = 'Sending...';
       } else {
         submitBtn.disabled = false;
         btnLoadingWrap.classList.remove('is-loading');
-        document.getElementById('btnText').textContent = 'Send Inquiry';
+        btnText.textContent = 'Send Inquiry';
       }
     }
+
+    function openPopup() {
+      successPopup.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePopup() {
+      successPopup.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+
+    successPopup.addEventListener('click', function(e) {
+      if (e.target === successPopup) {
+        closePopup();
+      }
+    });
 
     if (contactForm) {
       contactForm.addEventListener('submit', async function(e) {
@@ -1889,17 +2017,39 @@
             method: 'POST',
             body: formData,
             headers: {
-              'Accept': 'application/json'
+              Accept: 'application/json'
             }
           });
 
+          const contentType = response.headers.get('content-type') || '';
+
           if (response.ok) {
             contactForm.reset();
-            showInlineStatus('success', 'Thank you. Your inquiry has been sent successfully.');
-            showToast('success', 'Inquiry Sent', 'Your message was successfully sent to PPRX Events Management Services.');
+            showInlineStatus('success', 'Thank you! Your inquiry has been sent. Our team will contact you shortly.');
+            showToast('success', 'Inquiry Sent', 'PPRX will contact you soon.');
+            openPopup();
           } else {
-            showInlineStatus('error', 'Something went wrong. Please try again.');
-            showToast('error', 'Submission Failed', 'Something went wrong. Please try again.');
+            let errorMessage = 'Something went wrong. Please try again.';
+
+            if (contentType.includes('application/json')) {
+              const data = await response.json();
+              if (data && data.message) {
+                errorMessage = data.message;
+              } else if (data && data.errors && data.errors.length > 0) {
+                errorMessage = data.errors.map(err => err.message).join(', ');
+              }
+            } else {
+              const text = await response.text();
+
+              if (text.toLowerCase().includes('form not found')) {
+                errorMessage = 'Form submission service is not ready yet. Please verify the FormSubmit email first.';
+              } else if (text.toLowerCase().includes('address not found')) {
+                errorMessage = 'Reply email could not be found. Please check the email field setup.';
+              }
+            }
+
+            showInlineStatus('error', errorMessage);
+            showToast('error', 'Submission Failed', errorMessage);
           }
         } catch (error) {
           showInlineStatus('error', 'Network error. Please check your connection and try again.');
