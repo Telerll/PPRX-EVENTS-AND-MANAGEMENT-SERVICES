@@ -55,6 +55,7 @@
       width: 100%;
       height: 180px;
       object-fit: cover;
+      display: block;
     }
 
     .event-title {
@@ -100,7 +101,6 @@
       text-decoration: none;
       font-weight: bold;
     }
-
   </style>
 </head>
 <body>
@@ -110,18 +110,23 @@
 
 <div class="event-grid">
 
+  <div class="event-card" onclick="openLightbox('salve1.jpg')">
+    <img src="salve1.jpg" alt="SALVE Musical">
+    <div class="event-title">SALVE Musical — Coming Soon</div>
+  </div>
+
   <div class="event-card" onclick="openLightbox('concert1.jpg')">
-    <img src="concert1.jpg">
+    <img src="concert1.jpg" alt="Live Band Night">
     <div class="event-title">Live Band Night</div>
   </div>
 
   <div class="event-card" onclick="openLightbox('concert2.jpg')">
-    <img src="concert2.jpg">
+    <img src="concert2.jpg" alt="Music Festival Setup">
     <div class="event-title">Music Festival Setup</div>
   </div>
 
   <div class="event-card" onclick="openLightbox('concert3.jpg')">
-    <img src="concert3.jpg">
+    <img src="concert3.jpg" alt="Stage Production">
     <div class="event-title">Stage Production</div>
   </div>
 
@@ -130,7 +135,7 @@
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
   <span class="close" onclick="closeLightbox()">&times;</span>
-  <img id="lightbox-img">
+  <img id="lightbox-img" alt="Expanded event image">
 </div>
 
 <a href="index.html" class="back">← Back to Home</a>
@@ -147,9 +152,8 @@
     document.body.style.overflow = "";
   }
 
-  // close when clicking outside
-  document.getElementById("lightbox").addEventListener("click", function(e){
-    if(e.target === this){
+  document.getElementById("lightbox").addEventListener("click", function(e) {
+    if (e.target === this) {
       closeLightbox();
     }
   });
