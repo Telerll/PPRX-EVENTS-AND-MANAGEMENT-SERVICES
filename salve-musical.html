@@ -50,14 +50,16 @@
       transform: scale(1.05);
     }
 
+    /* LIGHTBOX */
     .lightbox {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.9);
+      background: rgba(0,0,0,0.95);
       display: none;
       align-items: center;
       justify-content: center;
       z-index: 999;
+      flex-direction: column;
     }
 
     .lightbox.active {
@@ -66,7 +68,8 @@
 
     .lightbox img {
       max-width: 90%;
-      max-height: 80vh;
+      max-height: 75vh;
+      border-radius: 10px;
     }
 
     .close {
@@ -75,6 +78,25 @@
       right: 30px;
       font-size: 40px;
       cursor: pointer;
+    }
+
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .prev { left: 20px; }
+    .next { right: 20px; }
+
+    .counter {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #cbd5e1;
     }
 
     .back {
@@ -92,29 +114,62 @@
 <p>Concert & Musical Production handled by PPRX</p>
 
 <div class="gallery">
-  <img src="salve1.jpg" onclick="openLightbox(this.src)">
-  <img src="salve2.jpg" onclick="openLightbox(this.src)">
-  <img src="salve3.jpg" onclick="openLightbox(this.src)">
-  <img src="salve4.jpg" onclick="openLightbox(this.src)">
-  <img src="salve5.jpg" onclick="openLightbox(this.src)">
+  <img src="salve1.jpg">
+  <img src="salve2.jpg">
+  <img src="salve3.jpg">
+  <img src="salve4.jpg">
+  <img src="salve5.jpg">
 </div>
 
 <div class="lightbox" id="lightbox">
   <span class="close" onclick="closeLightbox()">&times;</span>
+
+  <span class="nav-btn prev" onclick="prevImage()">❮</span>
   <img id="lightbox-img">
+  <span class="nav-btn next" onclick="nextImage()">❯</span>
+
+  <div class="counter" id="counter"></div>
 </div>
 
 <a href="index.html" class="back">← Back to Home</a>
 
 <script>
-  function openLightbox(src) {
-    document.getElementById("lightbox-img").src = src;
-    document.getElementById("lightbox").classList.add("active");
+  const images = document.querySelectorAll('.gallery img');
+  let currentIndex = 0;
+
+  images.forEach((img, index) => {
+    img.addEventListener('click', () => {
+      currentIndex = index;
+      showImage();
+      document.getElementById("lightbox").classList.add("active");
+    });
+  });
+
+  function showImage() {
+    document.getElementById("lightbox-img").src = images[currentIndex].src;
+    document.getElementById("counter").textContent =
+      (currentIndex + 1) + " / " + images.length;
+  }
+
+  function nextImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    showImage();
+  }
+
+  function prevImage() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    showImage();
   }
 
   function closeLightbox() {
     document.getElementById("lightbox").classList.remove("active");
   }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") nextImage();
+    if (e.key === "ArrowLeft") prevImage();
+    if (e.key === "Escape") closeLightbox();
+  });
 </script>
 
 </body>
