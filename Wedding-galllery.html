@@ -1,1 +1,458 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding Gallery | PPRX Events Management Services</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-1: #070d18;
+      --bg-2: #08111d;
+      --text: #ffffff;
+      --muted: #dbe5f4;
+      --muted-2: #cbd5e1;
+      --line: rgba(255, 255, 255, 0.07);
+      --orange-1: #ff8a00;
+      --orange-2: #ffb347;
+      --radius: 24px;
+      --shadow: 0 12px 34px rgba(0, 0, 0, 0.22);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(0, 102, 255, 0.08), transparent 30%),
+        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 3000;
+      width: 100%;
+      background: rgba(8, 17, 29, 0.78);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-brand {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      color: var(--text);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+      transition: color 0.25s ease, transform 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--orange-2);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta {
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--orange-1), var(--orange-2));
+      color: #fff !important;
+      box-shadow: 0 8px 18px rgba(255, 138, 0, 0.22);
+    }
+
+    .hero-section {
+      position: relative;
+      min-height: 55vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 20px;
+      text-align: center;
+      background:
+        linear-gradient(rgba(6, 12, 24, 0.50), rgba(6, 12, 24, 0.78)),
+        url('images/event2.jpg') center center / cover no-repeat;
+      background-color: #07101c;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      backdrop-filter: blur(5px);
+      background:
+        radial-gradient(circle at top left, rgba(255, 138, 0, 0.08), transparent 28%),
+        linear-gradient(to bottom, rgba(7, 12, 24, 0.25), rgba(7, 12, 24, 0.55), rgba(7, 12, 24, 0.78));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      padding: 30px 24px;
+      border-radius: 28px;
+      background: rgba(12, 18, 32, 0.50);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 14px 45px rgba(0,0,0,0.35);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-label {
+      display: inline-block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      color: #e5eefc;
+      margin-bottom: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .hero-content h1 {
+      font-size: 52px;
+      line-height: 1.08;
+      margin-bottom: 12px;
+      color: #ffffff;
+    }
+
+    .hero-content p {
+      max-width: 760px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    section {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 40px;
+      line-height: 1.15;
+      margin-bottom: 14px;
+      color: var(--text);
+      letter-spacing: -0.5px;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 74px;
+      height: 3px;
+      margin: 14px auto 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--orange-1), transparent);
+    }
+
+    .section-subtitle {
+      max-width: 880px;
+      color: var(--muted-2);
+      font-size: 17px;
+      margin: 0 auto 40px;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .portfolio-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+      border: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .portfolio-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 179, 71, 0.34);
+      box-shadow: 0 16px 34px rgba(0,0,0,0.24), 0 0 18px rgba(255,153,0,0.06);
+    }
+
+    .portfolio-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+
+    .portfolio-card:hover img {
+      transform: scale(1.04);
+    }
+
+    .portfolio-content {
+      padding: 22px;
+      text-align: left;
+    }
+
+    .portfolio-content h3 {
+      font-size: 22px;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .event-meta {
+      display: inline-block;
+      margin-bottom: 12px;
+      font-size: 13px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .portfolio-content p {
+      color: var(--muted-2);
+      font-size: 15px;
+      line-height: 1.75;
+      margin-bottom: 18px;
+    }
+
+    .view-btn {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--orange-1), var(--orange-2));
+      color: #ffffff;
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(255, 138, 0, 0.24);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .view-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 26px rgba(255, 138, 0, 0.30);
+    }
+
+    .back-home-wrapper {
+      display: flex;
+      justify-content: center;
+      padding: 20px 20px 46px;
+    }
+
+    .back-home-btn {
+      padding: 16px 34px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--orange-1), var(--orange-2));
+      color: #ffffff;
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(255, 138, 0, 0.26);
+      transition: all 0.3s ease;
+    }
+
+    .back-home-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(255, 138, 0, 0.32);
+    }
+
+    footer {
+      padding: 24px 15px;
+      text-align: center;
+      background: #050911;
+      color: #aeb7c5;
+      font-size: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 992px) {
+      .portfolio-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-content h1 {
+        font-size: 40px;
+      }
+
+      .section-title {
+        font-size: 34px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-section {
+        min-height: auto;
+        padding: 36px 14px;
+      }
+
+      .hero-content {
+        padding: 24px 16px;
+      }
+
+      .hero-content h1 {
+        font-size: 32px;
+      }
+
+      .hero-content p,
+      .section-subtitle,
+      .portfolio-content p {
+        font-size: 14px;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .portfolio-card img {
+        height: 210px;
+      }
+
+      .portfolio-content {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">PPRX</div>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#portfolio">Events</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Contact Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero-section">
+    <div class="hero-content">
+      <p class="hero-label">Wedding Event Gallery</p>
+      <h1>Wedding Highlights</h1>
+      <p>
+        A collection of wedding events and special celebrations handled by PPRX Events Management Services.
+        Browse each event to view highlights, setup style, and memorable moments.
+      </p>
+    </div>
+  </header>
+
+  <section>
+    <div class="container">
+      <h2 class="section-title">Featured Wedding Events</h2>
+      <p class="section-subtitle">
+        Click an event card below to open its dedicated photo gallery page.
+      </p>
+
+      <div class="portfolio-grid">
+
+        <div class="portfolio-card">
+          <img src="images/event1.jpg" alt="PPRX Nuptial">
+          <div class="portfolio-content">
+            <h3>PPRX Nuptial</h3>
+            <span class="event-meta">March 2026 • Makati City</span>
+            <p>
+              Elegant wedding celebration with professional event setup, coordinated styling,
+              and memorable highlights handled by the PPRX team.
+            </p>
+            <a href="pprx-nuptial.html" class="view-btn">View Photos</a>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <img src="images/event2.jpg" alt="Wedding Event Placeholder">
+          <div class="portfolio-content">
+            <h3>Wedding Event 2</h3>
+            <span class="event-meta">Coming Soon</span>
+            <p>
+              This gallery page can be used for another wedding event once the photos and details are ready.
+            </p>
+            <a href="wedding-event-2.html" class="view-btn">Open Album</a>
+          </div>
+        </div>
+
+        <div class="portfolio-card">
+          <img src="images/event3.jpg" alt="Wedding Event Placeholder">
+          <div class="portfolio-content">
+            <h3>Wedding Event 3</h3>
+            <span class="event-meta">Coming Soon</span>
+            <p>
+              Add another featured wedding event here and link it to its own gallery page later.
+            </p>
+            <a href="wedding-event-3.html" class="view-btn">Open Album</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="back-home-wrapper">
+    <a href="index.html#portfolio" class="back-home-btn">← Back to Main Website</a>
+  </div>
+
+  <footer>
+    © 2026 PPRX Events Management Services | Wedding Gallery
+  </footer>
+
+</body>
+</html>
