@@ -1,1 +1,113 @@
 
+/* =========================
+   EVENT PAGE (PPRX STYLE)
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(180deg, #070d18, #08111d);
+  color: #fff;
+  padding: 20px;
+}
+
+/* TITLE */
+h1 {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+p {
+  text-align: center;
+  color: #cbd5e1;
+  margin-bottom: 30px;
+}
+
+/* =========================
+   GALLERY GRID
+========================= */
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+/* CARD */
+.event-card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* HOVER EFFECT */
+.event-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+  border-color: rgba(255, 140, 0, 0.4);
+}
+
+/* IMAGE */
+.event-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* =========================
+   LIGHTBOX
+========================= */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 12px;
+}
+
+/* CLOSE BUTTON */
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 40px;
+  cursor: pointer;
+  color: white;
+}
+
+/* =========================
+   BACK BUTTON
+========================= */
+.back {
+  display: block;
+  text-align: center;
+  margin-top: 30px;
+  color: orange;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.back:hover {
+  color: #ffb347;
+}
