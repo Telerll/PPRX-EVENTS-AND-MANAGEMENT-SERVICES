@@ -1,1 +1,269 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Concert & Live Performances | PPRX Events Management Services</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg-1: #070d18;
+      --bg-2: #08111d;
+      --text: #ffffff;
+      --muted: #dbe5f4;
+      --muted-2: #cbd5e1;
+      --line: rgba(255, 255, 255, 0.07);
+      --orange-1: #ff8a00;
+      --orange-2: #ffb347;
+      --radius: 24px;
+      --shadow: 0 12px 34px rgba(0, 0, 0, 0.22);
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(0, 102, 255, 0.08), transparent 30%),
+        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 3000;
+      width: 100%;
+      background: rgba(8, 17, 29, 0.78);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-brand {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav-cta {
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--orange-1), var(--orange-2));
+      color: #fff !important;
+    }
+
+    .hero-section {
+      min-height: 55vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 20px;
+      text-align: center;
+      background:
+        linear-gradient(rgba(6, 12, 24, 0.50), rgba(6, 12, 24, 0.78)),
+        url('images/event3.jpg') center center / cover no-repeat;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      padding: 30px 24px;
+      border-radius: 28px;
+      background: rgba(12, 18, 32, 0.50);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 14px 45px rgba(0,0,0,0.35);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-label {
+      display: inline-block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      color: #e5eefc;
+      margin-bottom: 16px;
+    }
+
+    .hero-content h1 {
+      font-size: 52px;
+      margin-bottom: 12px;
+    }
+
+    .hero-content p {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    section {
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 40px;
+      margin-bottom: 14px;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 74px;
+      height: 3px;
+      margin: 14px auto 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--orange-1), transparent);
+    }
+
+    .section-subtitle {
+      max-width: 880px;
+      margin: 0 auto 40px;
+      color: var(--muted-2);
+      font-size: 17px;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .portfolio-card {
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+    }
+
+    .portfolio-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .portfolio-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+    }
+
+    .portfolio-content {
+      padding: 22px;
+      text-align: left;
+    }
+
+    .portfolio-content h3 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .event-meta {
+      display: inline-block;
+      margin-bottom: 12px;
+      font-size: 13px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .portfolio-content p {
+      color: var(--muted-2);
+      font-size: 15px;
+      margin-bottom: 18px;
+    }
+
+    .view-btn, .back-home-btn {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--orange-1), var(--orange-2));
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .back-home-wrapper {
+      display: flex;
+      justify-content: center;
+      padding: 20px 20px 46px;
+    }
+
+    footer {
+      padding: 24px 15px;
+      text-align: center;
+      background: #050911;
+      color: #aeb7c5;
+      font-size: 14px;
+    }
+
+    @media (max-width: 992px) {
+      .portfolio-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero-content h1 { font-size: 40px; }
+      .section-title { font-size: 34px; }
+    }
+
+    @media (max-width: 768px) {
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .hero-content h1 { font-size: 32px; }
+      .section-title { font-size: 28px; }
+      .hero-content p, .section-subtitle, .portfolio-content p { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">PPRX</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#portfolio">Events</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Contact Us</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero-section">
+    <div class="hero-content">
+      <p class="hero-label">Concert & Live Performance Gallery</p>
+      <h1>Concert & Live Performances</h1>
