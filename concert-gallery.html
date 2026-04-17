@@ -64,11 +64,16 @@
       font-weight: bold;
     }
 
+    .coming-soon {
+      opacity: 0.7;
+      cursor: default;
+    }
+
     /* LIGHTBOX */
     .lightbox {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.9);
+      background: rgba(0,0,0,0.92);
       display: none;
       align-items: center;
       justify-content: center;
@@ -85,12 +90,43 @@
       border-radius: 10px;
     }
 
-    .close {
+    .close,
+    .prev,
+    .next {
       position: absolute;
-      top: 20px;
-      right: 30px;
+      color: #fff;
       font-size: 40px;
       cursor: pointer;
+      user-select: none;
+    }
+
+    .close {
+      top: 20px;
+      right: 30px;
+    }
+
+    .prev {
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .next {
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .counter {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+      font-size: 14px;
+      background: rgba(255,255,255,0.08);
+      padding: 8px 14px;
+      border-radius: 999px;
     }
 
     .back {
@@ -110,24 +146,28 @@
 
 <div class="event-grid">
 
-  <div class="event-card" onclick="openLightbox('salve1.jpg')">
+  <!-- SALVE Musical -->
+  <div class="event-card" onclick="openGallery(['salve1.jpg','salve2.jpg','salve3.jpg'])">
     <img src="salve1.jpg" alt="SALVE Musical">
-    <div class="event-title">SALVE Musical — Coming Soon</div>
+    <div class="event-title">SALVE Musical</div>
   </div>
 
-  <div class="event-card" onclick="openLightbox('concert1.jpg')">
-    <img src="concert1.jpg" alt="Live Band Night">
-    <div class="event-title">Live Band Night</div>
+  <!-- Coming Soon 1 -->
+  <div class="event-card coming-soon">
+    <img src="concert1.jpg" alt="Upcoming Concert Event">
+    <div class="event-title">Upcoming Event — Coming Soon</div>
   </div>
 
-  <div class="event-card" onclick="openLightbox('concert2.jpg')">
-    <img src="concert2.jpg" alt="Music Festival Setup">
-    <div class="event-title">Music Festival Setup</div>
+  <!-- Coming Soon 2 -->
+  <div class="event-card coming-soon">
+    <img src="concert2.jpg" alt="Upcoming Concert Event">
+    <div class="event-title">Upcoming Event — Coming Soon</div>
   </div>
 
-  <div class="event-card" onclick="openLightbox('concert3.jpg')">
-    <img src="concert3.jpg" alt="Stage Production">
-    <div class="event-title">Stage Production</div>
+  <!-- Coming Soon 3 -->
+  <div class="event-card coming-soon">
+    <img src="concert3.jpg" alt="Upcoming Concert Event">
+    <div class="event-title">Upcoming Event — Coming Soon</div>
   </div>
 
 </div>
@@ -135,16 +175,42 @@
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
   <span class="close" onclick="closeLightbox()">&times;</span>
+  <span class="prev" onclick="prevImage(event)">&#10094;</span>
   <img id="lightbox-img" alt="Expanded event image">
+  <span class="next" onclick="nextImage(event)">&#10095;</span>
+  <div class="counter" id="counter">1 / 3</div>
 </div>
 
 <a href="index.html" class="back">← Back to Home</a>
 
 <script>
-  function openLightbox(src) {
-    document.getElementById("lightbox-img").src = src;
+  let currentImages = [];
+  let currentIndex = 0;
+
+  function openGallery(images) {
+    currentImages = images;
+    currentIndex = 0;
+    updateLightbox();
     document.getElementById("lightbox").classList.add("active");
     document.body.style.overflow = "hidden";
+  }
+
+  function updateLightbox() {
+    document.getElementById("lightbox-img").src = currentImages[currentIndex];
+    document.getElementById("counter").textContent =
+      (currentIndex + 1) + " / " + currentImages.length;
+  }
+
+  function nextImage(e) {
+    if (e) e.stopPropagation();
+    currentIndex = (currentIndex + 1) % currentImages.length;
+    updateLightbox();
+  }
+
+  function prevImage(e) {
+    if (e) e.stopPropagation();
+    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+    updateLightbox();
   }
 
   function closeLightbox() {
@@ -156,6 +222,15 @@
     if (e.target === this) {
       closeLightbox();
     }
+  });
+
+  document.addEventListener("keydown", function(e) {
+    const lightbox = document.getElementById("lightbox");
+    if (!lightbox.classList.contains("active")) return;
+
+    if (e.key === "Escape") closeLightbox();
+    if (e.key === "ArrowRight") nextImage();
+    if (e.key === "ArrowLeft") prevImage();
   });
 </script>
 
