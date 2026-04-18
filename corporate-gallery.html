@@ -100,7 +100,7 @@
       text-align: center;
       background:
         linear-gradient(rgba(6, 12, 24, 0.50), rgba(6, 12, 24, 0.78)),
-        url('images/event1.jpg') center center / cover no-repeat;
+        url('images/grab1.jpg') center center / cover no-repeat;
     }
 
     .hero-content {
@@ -221,13 +221,20 @@
       margin-bottom: 18px;
     }
 
-    .view-btn, .back-home-btn {
+    .view-btn,
+    .back-home-btn {
       display: inline-block;
       padding: 12px 20px;
       border-radius: 999px;
       background: linear-gradient(90deg, var(--orange-1), var(--orange-2));
       color: #fff;
       font-weight: 700;
+      border: none;
+      cursor: pointer;
+    }
+
+    .coming-soon {
+      opacity: 0.78;
     }
 
     .back-home-wrapper {
@@ -244,17 +251,97 @@
       font-size: 14px;
     }
 
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80vh;
+      border-radius: 12px;
+    }
+
+    .close,
+    .prev,
+    .next {
+      position: absolute;
+      color: #fff;
+      font-size: 40px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .close {
+      top: 20px;
+      right: 30px;
+    }
+
+    .prev {
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .next {
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .counter {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+      font-size: 14px;
+      background: rgba(255,255,255,0.08);
+      padding: 8px 14px;
+      border-radius: 999px;
+    }
+
     @media (max-width: 992px) {
-      .portfolio-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .hero-content h1 { font-size: 40px; }
-      .section-title { font-size: 34px; }
+      .portfolio-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-content h1 {
+        font-size: 40px;
+      }
+
+      .section-title {
+        font-size: 34px;
+      }
     }
 
     @media (max-width: 768px) {
-      .portfolio-grid { grid-template-columns: 1fr; }
-      .hero-content h1 { font-size: 32px; }
-      .section-title { font-size: 28px; }
-      .hero-content p, .section-subtitle, .portfolio-content p { font-size: 14px; }
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-content h1 {
+        font-size: 32px;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+
+      .hero-content p,
+      .section-subtitle,
+      .portfolio-content p {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
@@ -284,40 +371,49 @@
   <section>
     <div class="container">
       <h2 class="section-title">Featured Corporate Events</h2>
-      <p class="section-subtitle">Click an event card below to open its dedicated gallery page.</p>
+      <p class="section-subtitle">Click an event card below to view available photos.</p>
 
       <div class="portfolio-grid">
         <div class="portfolio-card">
-          <img src="images/grab1.jpg" alt="Grab Chrismass Party">
+          <img src="images/grab1.jpg" alt="Grab Christmas Party 2025">
           <div class="portfolio-content">
-            <h3>Grab Chrismass Party 2025</h3>
-            <p>Professional setup for corporate meetings, conferences, and company programs.</p>
-            <a href="corporate-event-1.html" class="view-btn">View Photos</a>
+            <h3>Grab Christmas Party 2025</h3>
+            <span class="event-meta">Corporate Event</span>
+            <p>Professional setup for a festive corporate celebration handled by PPRX Events Management Services.</p>
+            <button class="view-btn" onclick="openGallery(['images/grab1.jpg','images/grab2.jpg'])">View Photos</button>
           </div>
         </div>
 
-        <div class="portfolio-card">
+        <div class="portfolio-card coming-soon">
           <img src="images/event2.jpg" alt="Corporate Event 2">
           <div class="portfolio-content">
             <h3>Corporate Event 2</h3>
             <span class="event-meta">Coming Soon</span>
-            <p>Add another featured corporate event here and link it to its own gallery page.</p>
-            <a href="corporate-event-2.html" class="view-btn">Open Album</a>
+            <p>Add another featured corporate event here once more photos are ready for upload.</p>
+            <span class="view-btn">Coming Soon</span>
           </div>
         </div>
 
-        <div class="portfolio-card">
+        <div class="portfolio-card coming-soon">
           <img src="images/event3.jpg" alt="Corporate Event 3">
           <div class="portfolio-content">
             <h3>Corporate Event 3</h3>
             <span class="event-meta">Coming Soon</span>
-            <p>Use this card for product launches, recognition events, or company celebrations.</p>
-            <a href="corporate-event-3.html" class="view-btn">Open Album</a>
+            <p>Use this for product launches, recognition events, or company celebrations in the future.</p>
+            <span class="view-btn">Coming Soon</span>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <div class="lightbox" id="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <span class="prev" onclick="prevImage(event)">&#10094;</span>
+    <img id="lightbox-img" alt="Expanded corporate event image">
+    <span class="next" onclick="nextImage(event)">&#10095;</span>
+    <div class="counter" id="counter">1 / 2</div>
+  </div>
 
   <div class="back-home-wrapper">
     <a href="index.html#portfolio" class="back-home-btn">← Back to Main Website</a>
@@ -327,5 +423,56 @@
     © 2026 PPRX Events Management Services | Corporate Events Gallery
   </footer>
 
+  <script>
+    let currentImages = [];
+    let currentIndex = 0;
+
+    function openGallery(images) {
+      currentImages = images;
+      currentIndex = 0;
+      updateLightbox();
+      document.getElementById("lightbox").classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    function updateLightbox() {
+      document.getElementById("lightbox-img").src = currentImages[currentIndex];
+      document.getElementById("counter").textContent =
+        (currentIndex + 1) + " / " + currentImages.length;
+    }
+
+    function nextImage(e) {
+      if (e) e.stopPropagation();
+      currentIndex = (currentIndex + 1) % currentImages.length;
+      updateLightbox();
+    }
+
+    function prevImage(e) {
+      if (e) e.stopPropagation();
+      currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+      updateLightbox();
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    document.getElementById("lightbox").addEventListener("click", function(e) {
+      if (e.target === this) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", function(e) {
+      const lightbox = document.getElementById("lightbox");
+      if (!lightbox.classList.contains("active")) return;
+
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowRight") nextImage();
+      if (e.key === "ArrowLeft") prevImage();
+    });
+  </script>
+
 </body>
-</html>
+</html>.
