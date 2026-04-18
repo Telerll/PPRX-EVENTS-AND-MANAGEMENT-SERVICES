@@ -6,7 +6,11 @@
   <title>Exhibition & Trade Show | PPRX Events Management Services</title>
 
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     :root {
       --bg-1: #070d18;
@@ -30,8 +34,15 @@
       line-height: 1.6;
     }
 
-    a { text-decoration: none; color: inherit; }
-    img { max-width: 100%; display: block; }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
     .navbar {
       position: sticky;
@@ -210,13 +221,20 @@
       margin-bottom: 18px;
     }
 
-    .view-btn, .back-home-btn {
+    .view-btn,
+    .back-home-btn {
       display: inline-block;
       padding: 12px 20px;
       border-radius: 999px;
       background: linear-gradient(90deg, var(--orange-1), var(--orange-2));
       color: #fff;
       font-weight: 700;
+      border: none;
+      cursor: pointer;
+    }
+
+    .coming-soon {
+      opacity: 0.78;
     }
 
     .back-home-wrapper {
@@ -233,17 +251,97 @@
       font-size: 14px;
     }
 
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80vh;
+      border-radius: 12px;
+    }
+
+    .close,
+    .prev,
+    .next {
+      position: absolute;
+      color: #fff;
+      font-size: 40px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .close {
+      top: 20px;
+      right: 30px;
+    }
+
+    .prev {
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .next {
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .counter {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+      font-size: 14px;
+      background: rgba(255,255,255,0.08);
+      padding: 8px 14px;
+      border-radius: 999px;
+    }
+
     @media (max-width: 992px) {
-      .portfolio-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .hero-content h1 { font-size: 40px; }
-      .section-title { font-size: 34px; }
+      .portfolio-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-content h1 {
+        font-size: 40px;
+      }
+
+      .section-title {
+        font-size: 34px;
+      }
     }
 
     @media (max-width: 768px) {
-      .portfolio-grid { grid-template-columns: 1fr; }
-      .hero-content h1 { font-size: 32px; }
-      .section-title { font-size: 28px; }
-      .hero-content p, .section-subtitle, .portfolio-content p { font-size: 14px; }
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-content h1 {
+        font-size: 32px;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+
+      .hero-content p,
+      .section-subtitle,
+      .portfolio-content p {
+        font-size: 14px;
+      }
     }
   </style>
 </head>
@@ -273,41 +371,49 @@
   <section>
     <div class="container">
       <h2 class="section-title">Featured Exhibition Events</h2>
-      <p class="section-subtitle">Click an event card below to open its dedicated gallery page.</p>
+      <p class="section-subtitle">Click an event card below to view available photos.</p>
 
       <div class="portfolio-grid">
         <div class="portfolio-card">
           <img src="images/event4.jpg" alt="Exhibition Event 1">
           <div class="portfolio-content">
             <h3>Exhibition Event 1</h3>
-            <span class="event-meta">June 2026 • Trade Venue</span>
+            <span class="event-meta">Trade Show Setup</span>
             <p>Complete support for booth setup, visual branding, displays, and exhibition presentation needs.</p>
-            <a href="exhibition-event-1.html" class="view-btn">View Photos</a>
+            <button class="view-btn" onclick="openGallery(['images/event4.jpg','images/event4-2.jpg'])">View Photos</button>
           </div>
         </div>
 
-        <div class="portfolio-card">
+        <div class="portfolio-card coming-soon">
           <img src="images/event2.jpg" alt="Exhibition Event 2">
           <div class="portfolio-content">
             <h3>Trade Show 2</h3>
             <span class="event-meta">Coming Soon</span>
-            <p>Add another exhibition or trade show event here with its own gallery page.</p>
-            <a href="exhibition-event-2.html" class="view-btn">Open Album</a>
+            <p>Add another exhibition or trade show event here once more photos are ready for upload.</p>
+            <span class="view-btn">Coming Soon</span>
           </div>
         </div>
 
-        <div class="portfolio-card">
+        <div class="portfolio-card coming-soon">
           <img src="images/event3.jpg" alt="Exhibition Event 3">
           <div class="portfolio-content">
             <h3>Trade Show 3</h3>
             <span class="event-meta">Coming Soon</span>
-            <p>Use this for another featured exhibition event with a separate event gallery page.</p>
-            <a href="exhibition-event-3.html" class="view-btn">Open Album</a>
+            <p>Use this for another featured exhibition event with more uploaded photos in the future.</p>
+            <span class="view-btn">Coming Soon</span>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <div class="lightbox" id="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <span class="prev" onclick="prevImage(event)">&#10094;</span>
+    <img id="lightbox-img" alt="Expanded exhibition image">
+    <span class="next" onclick="nextImage(event)">&#10095;</span>
+    <div class="counter" id="counter">1 / 2</div>
+  </div>
 
   <div class="back-home-wrapper">
     <a href="index.html#portfolio" class="back-home-btn">← Back to Main Website</a>
@@ -316,6 +422,57 @@
   <footer>
     © 2026 PPRX Events Management Services | Exhibition & Trade Show Gallery
   </footer>
+
+  <script>
+    let currentImages = [];
+    let currentIndex = 0;
+
+    function openGallery(images) {
+      currentImages = images;
+      currentIndex = 0;
+      updateLightbox();
+      document.getElementById("lightbox").classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    function updateLightbox() {
+      document.getElementById("lightbox-img").src = currentImages[currentIndex];
+      document.getElementById("counter").textContent =
+        (currentIndex + 1) + " / " + currentImages.length;
+    }
+
+    function nextImage(e) {
+      if (e) e.stopPropagation();
+      currentIndex = (currentIndex + 1) % currentImages.length;
+      updateLightbox();
+    }
+
+    function prevImage(e) {
+      if (e) e.stopPropagation();
+      currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+      updateLightbox();
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    document.getElementById("lightbox").addEventListener("click", function(e) {
+      if (e.target === this) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", function(e) {
+      const lightbox = document.getElementById("lightbox");
+      if (!lightbox.classList.contains("active")) return;
+
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowRight") nextImage();
+      if (e.key === "ArrowLeft") prevImage();
+    });
+  </script>
 
 </body>
 </html>
