@@ -278,11 +278,17 @@
       font-weight: 700;
       box-shadow: 0 8px 20px rgba(255, 138, 0, 0.24);
       transition: transform 0.25s ease, box-shadow 0.25s ease;
+      border: none;
+      cursor: pointer;
     }
 
     .view-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 14px 26px rgba(255, 138, 0, 0.30);
+    }
+
+    .coming-soon {
+      opacity: 0.78;
     }
 
     .back-home-wrapper {
@@ -314,6 +320,65 @@
       font-size: 14px;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
       letter-spacing: 0.5px;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80vh;
+      border-radius: 12px;
+    }
+
+    .close,
+    .prev,
+    .next {
+      position: absolute;
+      color: #fff;
+      font-size: 40px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .close {
+      top: 20px;
+      right: 30px;
+    }
+
+    .prev {
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .next {
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .counter {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+      font-size: 14px;
+      background: rgba(255,255,255,0.08);
+      padding: 8px 14px;
+      border-radius: 999px;
     }
 
     @media (max-width: 992px) {
@@ -399,51 +464,59 @@
     <div class="container">
       <h2 class="section-title">Featured Wedding Events</h2>
       <p class="section-subtitle">
-        Click an event card below to open its dedicated photo gallery page.
+        Click an event card below to view available photos.
       </p>
 
       <div class="portfolio-grid">
 
         <div class="portfolio-card">
-          <img src="images/event1.jpg" alt="PPRX Nuptial">
+          <img src="images/event2.jpg" alt="PPRX Nuptial">
           <div class="portfolio-content">
             <h3>PPRX Nuptial</h3>
-            <span class="event-meta">March 2026 • Makati City</span>
+            <span class="event-meta">Wedding Event</span>
             <p>
               Elegant wedding celebration with professional event setup, coordinated styling,
               and memorable highlights handled by the PPRX team.
             </p>
-            <a href="pprx-nuptial.html" class="view-btn">View Photos</a>
+            <button class="view-btn" onclick="openGallery(['images/event2.jpg','images/event2-2.jpg'])">View Photos</button>
           </div>
         </div>
 
-        <div class="portfolio-card">
-          <img src="images/event2.jpg" alt="Wedding Event Placeholder">
+        <div class="portfolio-card coming-soon">
+          <img src="images/event1.jpg" alt="Wedding Event Placeholder">
           <div class="portfolio-content">
             <h3>Wedding Event 2</h3>
             <span class="event-meta">Coming Soon</span>
             <p>
-              This gallery page can be used for another wedding event once the photos and details are ready.
+              This gallery card can be used for another wedding event once the photos and details are ready.
             </p>
-            <a href="wedding-event-2.html" class="view-btn">Open Album</a>
+            <span class="view-btn">Coming Soon</span>
           </div>
         </div>
 
-        <div class="portfolio-card">
+        <div class="portfolio-card coming-soon">
           <img src="images/event3.jpg" alt="Wedding Event Placeholder">
           <div class="portfolio-content">
             <h3>Wedding Event 3</h3>
             <span class="event-meta">Coming Soon</span>
             <p>
-              Add another featured wedding event here and link it to its own gallery page later.
+              Add another featured wedding event here with more uploaded photos in the future.
             </p>
-            <a href="wedding-event-3.html" class="view-btn">Open Album</a>
+            <span class="view-btn">Coming Soon</span>
           </div>
         </div>
 
       </div>
     </div>
   </section>
+
+  <div class="lightbox" id="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <span class="prev" onclick="prevImage(event)">&#10094;</span>
+    <img id="lightbox-img" alt="Expanded wedding image">
+    <span class="next" onclick="nextImage(event)">&#10095;</span>
+    <div class="counter" id="counter">1 / 2</div>
+  </div>
 
   <div class="back-home-wrapper">
     <a href="index.html#portfolio" class="back-home-btn">← Back to Main Website</a>
@@ -452,6 +525,57 @@
   <footer>
     © 2026 PPRX Events Management Services | Wedding Gallery
   </footer>
+
+  <script>
+    let currentImages = [];
+    let currentIndex = 0;
+
+    function openGallery(images) {
+      currentImages = images;
+      currentIndex = 0;
+      updateLightbox();
+      document.getElementById("lightbox").classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    function updateLightbox() {
+      document.getElementById("lightbox-img").src = currentImages[currentIndex];
+      document.getElementById("counter").textContent =
+        (currentIndex + 1) + " / " + currentImages.length;
+    }
+
+    function nextImage(e) {
+      if (e) e.stopPropagation();
+      currentIndex = (currentIndex + 1) % currentImages.length;
+      updateLightbox();
+    }
+
+    function prevImage(e) {
+      if (e) e.stopPropagation();
+      currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+      updateLightbox();
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    document.getElementById("lightbox").addEventListener("click", function(e) {
+      if (e.target === this) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", function(e) {
+      const lightbox = document.getElementById("lightbox");
+      if (!lightbox.classList.contains("active")) return;
+
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowRight") nextImage();
+      if (e.key === "ArrowLeft") prevImage();
+    });
+  </script>
 
 </body>
 </html>
