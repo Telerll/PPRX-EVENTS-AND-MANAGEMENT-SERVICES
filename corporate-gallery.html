@@ -10,6 +10,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      font-family: Arial, sans-serif;
     }
 
     :root {
@@ -32,6 +33,7 @@
         linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
       color: var(--text);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     a {
@@ -82,6 +84,12 @@
       color: var(--muted);
       font-size: 14px;
       font-weight: 600;
+      transition: color 0.25s ease, transform 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--orange-2);
+      transform: translateY(-1px);
     }
 
     .nav-cta {
@@ -89,6 +97,7 @@
       border-radius: 999px;
       background: linear-gradient(90deg, var(--orange-1), var(--orange-2));
       color: #fff !important;
+      box-shadow: 0 8px 18px rgba(255, 138, 0, 0.22);
     }
 
     .hero-section {
@@ -100,10 +109,24 @@
       text-align: center;
       background:
         linear-gradient(rgba(6, 12, 24, 0.50), rgba(6, 12, 24, 0.78)),
-        url('images/grab1.jpg') center center / cover no-repeat;
+        url('grab1.jpg') center center / cover no-repeat;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      backdrop-filter: blur(4px);
+      background:
+        radial-gradient(circle at top left, rgba(255, 138, 0, 0.08), transparent 28%),
+        linear-gradient(to bottom, rgba(7, 12, 24, 0.22), rgba(7, 12, 24, 0.55), rgba(7, 12, 24, 0.78));
     }
 
     .hero-content {
+      position: relative;
+      z-index: 2;
       max-width: 900px;
       padding: 30px 24px;
       border-radius: 28px;
@@ -123,11 +146,13 @@
       background: rgba(255,255,255,0.08);
       color: #e5eefc;
       margin-bottom: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
     }
 
     .hero-content h1 {
       font-size: 52px;
       margin-bottom: 12px;
+      line-height: 1.08;
     }
 
     .hero-content p {
@@ -150,6 +175,7 @@
     .section-title {
       font-size: 40px;
       margin-bottom: 14px;
+      line-height: 1.15;
     }
 
     .section-title::after {
@@ -176,22 +202,30 @@
     }
 
     .portfolio-card {
+      position: relative;
       overflow: hidden;
       border-radius: var(--radius);
       background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .portfolio-card:hover {
       transform: translateY(-6px);
+      border-color: rgba(255,179,71,0.28);
+      box-shadow: 0 16px 34px rgba(0,0,0,0.28), 0 0 18px rgba(255,153,0,0.06);
     }
 
     .portfolio-card img {
       width: 100%;
       height: 240px;
       object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+
+    .portfolio-card:hover img {
+      transform: scale(1.04);
     }
 
     .portfolio-content {
@@ -219,6 +253,12 @@
       color: var(--muted-2);
       font-size: 15px;
       margin-bottom: 18px;
+      line-height: 1.75;
+    }
+
+    .card-link {
+      display: block;
+      cursor: pointer;
     }
 
     .view-btn,
@@ -231,10 +271,29 @@
       font-weight: 700;
       border: none;
       cursor: pointer;
+      box-shadow: 0 8px 20px rgba(255,138,0,0.24);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .view-btn:hover,
+    .back-home-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(255,138,0,0.30);
     }
 
     .coming-soon {
-      opacity: 0.78;
+      opacity: 0.80;
+      cursor: default;
+    }
+
+    .coming-soon:hover {
+      transform: none;
+      border-color: var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .coming-soon:hover img {
+      transform: none;
     }
 
     .back-home-wrapper {
@@ -269,6 +328,7 @@
       max-width: 90%;
       max-height: 80vh;
       border-radius: 12px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.45);
     }
 
     .close,
@@ -342,6 +402,20 @@
       .portfolio-content p {
         font-size: 14px;
       }
+
+      .close,
+      .prev,
+      .next {
+        font-size: 32px;
+      }
+
+      .prev {
+        left: 12px;
+      }
+
+      .next {
+        right: 12px;
+      }
     }
   </style>
 </head>
@@ -374,18 +448,19 @@
       <p class="section-subtitle">Click an event card below to view available photos.</p>
 
       <div class="portfolio-grid">
-        <div class="portfolio-card">
-          <img src="images/grab1.jpg" alt="Grab Christmas Party 2025">
+
+        <div class="portfolio-card card-link" onclick="openGallery(['grab1.jpg','grab2.jpg'])">
+          <img src="grab1.jpg" alt="Grab Christmas Party 2025">
           <div class="portfolio-content">
             <h3>Grab Christmas Party 2025</h3>
             <span class="event-meta">Corporate Event</span>
             <p>Professional setup for a festive corporate celebration handled by PPRX Events Management Services.</p>
-            <button class="view-btn" onclick="openGallery(['images/grab1.jpg','images/grab2.jpg'])">View Photos</button>
+            <span class="view-btn">View Photos</span>
           </div>
         </div>
 
         <div class="portfolio-card coming-soon">
-          <img src="images/event2.jpg" alt="Corporate Event 2">
+          <img src="event2.jpg" alt="Corporate Event 2">
           <div class="portfolio-content">
             <h3>Corporate Event 2</h3>
             <span class="event-meta">Coming Soon</span>
@@ -395,7 +470,7 @@
         </div>
 
         <div class="portfolio-card coming-soon">
-          <img src="images/event3.jpg" alt="Corporate Event 3">
+          <img src="event3.jpg" alt="Corporate Event 3">
           <div class="portfolio-content">
             <h3>Corporate Event 3</h3>
             <span class="event-meta">Coming Soon</span>
@@ -403,6 +478,7 @@
             <span class="view-btn">Coming Soon</span>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -412,7 +488,7 @@
     <span class="prev" onclick="prevImage(event)">&#10094;</span>
     <img id="lightbox-img" alt="Expanded corporate event image">
     <span class="next" onclick="nextImage(event)">&#10095;</span>
-    <div class="counter" id="counter">1 / 2</div>
+    <div class="counter" id="counter"></div>
   </div>
 
   <div class="back-home-wrapper">
@@ -475,4 +551,4 @@
   </script>
 
 </body>
-</html>.
+</html>
