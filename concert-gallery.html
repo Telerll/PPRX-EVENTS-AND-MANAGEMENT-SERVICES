@@ -166,7 +166,7 @@
     .back-btn {
       display: block;
       width: fit-content;
-      margin: 40px auto 0;
+      margin: 40px auto 20px;
       padding: 14px 28px;
       border-radius: 999px;
       background: linear-gradient(135deg, #facc15, #f97316);
@@ -181,6 +181,13 @@
     .back-btn:hover {
       transform: scale(1.05);
       box-shadow: 0 10px 30px rgba(249,115,22,0.7);
+    }
+
+    footer {
+      text-align: center;
+      color: #aeb7c5;
+      font-size: 14px;
+      padding: 10px 0 20px;
     }
 
     @media (max-width: 768px) {
@@ -227,19 +234,16 @@
 
   <div class="event-grid">
 
-    <!-- SALVE Musical -->
     <div class="event-card" onclick="openGallery(['salve1.jpg','salve2.jpg','salve3.jpg'])">
       <img src="salve1.jpg" alt="SALVE Musical">
       <div class="event-title">SALVE Musical</div>
     </div>
 
-    <!-- MAKARA Musical -->
     <div class="event-card" onclick="openGallery(['makara1.jpg','makara2.jpg','makara3.jpg'])">
       <img src="makara1.jpg" alt="MAKARA Musical">
       <div class="event-title">MAKARA Musical</div>
     </div>
 
-    <!-- Coming Soon -->
     <div class="event-card coming-soon">
       <img src="concert2.jpg" alt="Upcoming Concert Event">
       <div class="event-title">Upcoming Event — Coming Soon</div>
@@ -252,7 +256,6 @@
 
   </div>
 
-  <!-- LIGHTBOX -->
   <div class="lightbox" id="lightbox">
     <span class="close" onclick="closeLightbox()">&times;</span>
     <span class="prev" onclick="prevImage(event)">&#10094;</span>
@@ -261,9 +264,7 @@
     <div class="counter" id="counter">1 / 3</div>
   </div>
 
-   <div class="back-home-wrapper">
-    <a href="index.html#portfolio" class="back-home-btn">← Back to Events Main</a>
-  </div>
+  <a href="index.html#portfolio" class="back-btn">← Back to Events Main</a>
 
   <footer>
     © 2026 PPRX Events Management Services | Concert Gallery
