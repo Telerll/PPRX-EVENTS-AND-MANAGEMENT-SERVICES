@@ -9,13 +9,42 @@
   font-family: Arial, sans-serif;
 }
 
+:root {
+  --bg-1: #070d18;
+  --bg-2: #08111d;
+  --text: #ffffff;
+  --muted: #dbe5f4;
+  --muted-2: #cbd5e1;
+  --line: rgba(255, 255, 255, 0.07);
+  --orange-1: #ff8a00;
+  --orange-2: #ffb347;
+  --radius: 24px;
+  --shadow: 0 12px 34px rgba(0, 0, 0, 0.22);
+}
+
 body {
-  background: linear-gradient(180deg, #070d18, #08111d);
-  color: #fff;
+  background:
+    radial-gradient(circle at top, rgba(0, 102, 255, 0.08), transparent 30%),
+    linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+  color: var(--text);
+  line-height: 1.6;
   padding: 20px;
 }
 
-/* TITLE */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* =========================
+   TITLE / TEXT
+========================= */
+
 h1 {
   text-align: center;
   font-size: 32px;
@@ -24,20 +53,20 @@ h1 {
 
 p {
   text-align: center;
-  color: #cbd5e1;
+  color: var(--muted-2);
   margin-bottom: 30px;
 }
 
 /* =========================
    GALLERY GRID
 ========================= */
+
 .event-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 18px;
 }
 
-/* CARD */
 .event-card {
   background: rgba(255,255,255,0.05);
   border-radius: 18px;
@@ -47,27 +76,32 @@ p {
   border: 1px solid rgba(255,255,255,0.08);
 }
 
-/* HOVER EFFECT */
 .event-card:hover {
   transform: translateY(-6px) scale(1.02);
   box-shadow: 0 12px 30px rgba(0,0,0,0.5);
   border-color: rgba(255, 140, 0, 0.4);
 }
 
-/* IMAGE */
 .event-card img {
   width: 100%;
   height: 200px;
   object-fit: cover;
 }
 
+.event-title {
+  padding: 12px;
+  text-align: center;
+  font-weight: bold;
+}
+
 /* =========================
    LIGHTBOX
 ========================= */
+
 .lightbox {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.9);
+  background: rgba(0,0,0,0.92);
   display: none;
   align-items: center;
   justify-content: center;
@@ -84,70 +118,48 @@ p {
   border-radius: 12px;
 }
 
-/* CLOSE BUTTON */
-.close {
+.close,
+.prev,
+.next {
   position: absolute;
-  top: 20px;
-  right: 30px;
+  color: #fff;
   font-size: 40px;
   cursor: pointer;
-  color: white;
+  user-select: none;
+}
+
+.close {
+  top: 20px;
+  right: 30px;
+}
+
+.prev {
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.next {
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.counter {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 14px;
+  background: rgba(255,255,255,0.08);
+  padding: 8px 14px;
+  border-radius: 999px;
 }
 
 /* =========================
-   BACK BUTTON
+   NAVBAR
 ========================= */
-.back {
-  display: block;
-  text-align: center;
-  margin-top: 30px;
-  color: orange;
-  text-decoration: none;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.back:hover {
-  color: #ffb347;
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-}
-
-:root {
-  --bg-1: #070d18;
-  --bg-2: #08111d;
-  --text: #ffffff;
-  --muted: #dbe5f4;
-  --muted-2: #cbd5e1;
-  --line: rgba(255, 255, 255, 0.07);
-  --orange-1: #ff8a00;
-  --orange-2: #ffb347;
-  --radius: 24px;
-  --shadow: 0 12px 34px rgba(0, 0, 0, 0.22);
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background:
-    radial-gradient(circle at top, rgba(0, 102, 255, 0.08), transparent 30%),
-    linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
-  color: var(--text);
-  line-height: 1.6;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
 
 .navbar {
   position: sticky;
@@ -157,6 +169,7 @@ img {
   background: rgba(8, 17, 29, 0.78);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin: -20px -20px 20px;
 }
 
 .nav-container {
@@ -196,6 +209,10 @@ img {
   color: #fff !important;
 }
 
+/* =========================
+   HERO SECTION
+========================= */
+
 .hero-section {
   min-height: 55vh;
   display: flex;
@@ -206,6 +223,8 @@ img {
   background:
     linear-gradient(rgba(6, 12, 24, 0.50), rgba(6, 12, 24, 0.78)),
     url('salve1.jpg') center center / cover no-repeat;
+  border-radius: 28px;
+  margin-bottom: 30px;
 }
 
 .hero-content {
@@ -242,6 +261,10 @@ img {
   margin: 0 auto;
 }
 
+/* =========================
+   SECTION / CONTAINER
+========================= */
+
 section {
   padding: 80px 20px;
   text-align: center;
@@ -273,6 +296,10 @@ section {
   color: var(--muted-2);
   font-size: 17px;
 }
+
+/* =========================
+   PORTFOLIO CARD STYLE
+========================= */
 
 .portfolio-grid {
   display: grid;
@@ -351,6 +378,34 @@ footer {
   font-size: 14px;
 }
 
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-btn {
+  display: block;
+  width: fit-content;
+  margin: 40px auto 0;
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #facc15, #f97316);
+  color: #ffffff !important;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(249,115,22,0.5);
+  transition: 0.3s ease;
+}
+
+.back-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(249,115,22,0.7);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
 @media (max-width: 992px) {
   .portfolio-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -366,7 +421,8 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .portfolio-grid {
+  .portfolio-grid,
+  .event-grid {
     grid-template-columns: 1fr;
   }
 
@@ -380,25 +436,8 @@ footer {
 
   .hero-content p,
   .section-subtitle,
-  .portfolio-content p {
+  .portfolio-content p,
+  p {
     font-size: 14px;
   }
-}
-.back-btn {
-  display: inline-block;
-  margin: 40px auto 0;
-  padding: 14px 28px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #facc15, #f97316);
-  color: #fff;
-  font-weight: bold;
-  text-decoration: none;
-  text-align: center;
-  box-shadow: 0 6px 20px rgba(249,115,22,0.5);
-  transition: 0.3s ease;
-}
-
-.back-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 30px rgba(249,115,22,0.7);
 }
