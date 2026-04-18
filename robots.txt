@@ -1,1 +1,5 @@
 
+User-agent: *
+Allow: /
+
+Sitemap: https://telerll.github.io/PPRX-EVENTS-AND-MANAGEMENT-SERVICES/sitemap.xml
