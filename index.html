@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- PRIMARY SEO -->
   <title>PPRX Events Management Services | Event Planner Makati City Philippines</title>
   <meta name="description" content="PPRX Events Management Services offers professional event planning, LED wall rental, stage production, weddings, concerts, corporate events, and full event solutions in Makati City, Metro Manila, Philippines." />
   <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, follow, max-image-preview:large" />
+  <meta name="keywords" content="event planner Makati, event management Philippines, LED wall rental Manila, concert production Philippines, wedding planner Makati, corporate events Manila, stage setup rental Philippines, PPRX Events Management Services" />
   <link rel="canonical" href="https://www.pprxeventsph.com/" />
 
   <!-- BRAND -->
   <meta name="author" content="PPRX Events Management Services" />
   <meta name="theme-color" content="#08111d" />
   <link rel="icon" href="logo.png" type="image/png" />
+
+  <!-- PERFORMANCE -->
+  <link rel="preload" as="image" href="hero-bg.jpg" />
+  <link rel="preload" as="image" href="logo.png" />
 
   <!-- OPEN GRAPH (Facebook / Messenger) -->
   <meta property="og:type" content="website" />
@@ -34,7 +40,7 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "EventService",
     "name": "PPRX Events Management Services",
     "image": "https://www.pprxeventsph.com/logo.png",
     "url": "https://www.pprxeventsph.com/",
@@ -56,8 +62,7 @@
     "description": "Professional event management services including weddings, concerts, corporate events, LED wall rental, stage production, and full event solutions."
   }
   </script>
-</head>
-  
+
   <style>
     /* =========================
        RESET / BASE
@@ -86,6 +91,7 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 80px;
     }
 
     body {
@@ -1751,7 +1757,7 @@
       <div class="portfolio-grid">
 
         <a href="corporate-gallery.html" class="portfolio-card">
-          <img src="event1.jpg" alt="Corporate Event">
+          <img src="event1.jpg" alt="Corporate event setup by PPRX Events Management Services in Makati City">
           <div class="portfolio-content">
             <h3>Corporate Event</h3>
             <p>Professional setup for conferences, launches, and formal company gatherings.</p>
@@ -1759,7 +1765,7 @@
         </a>
 
         <a href="wedding-gallery.html" class="portfolio-card">
-          <img src="event2.jpg" alt="Wedding Celebration">
+          <img src="event2.jpg" alt="Wedding celebration setup by PPRX Events Management Services">
           <div class="portfolio-content">
             <h3>Wedding Celebration</h3>
             <p>Elegant event support for memorable weddings and special family occasions.</p>
@@ -1767,7 +1773,7 @@
         </a>
 
         <a href="concert-gallery.html" class="portfolio-card">
-          <img src="event3.jpg" alt="Concert and Live Performance">
+          <img src="event3.jpg" alt="Concert and live performance production by PPRX Events Management Services">
           <div class="portfolio-content">
             <h3>Concert & Live Performance</h3>
             <p>Technical production and reliable equipment for live entertainment events.</p>
@@ -1775,7 +1781,7 @@
         </a>
 
         <a href="exhibition-gallery.html" class="portfolio-card">
-          <img src="event4.jpg" alt="Exhibition and Trade Show">
+          <img src="event4.jpg" alt="Exhibition and trade show support by PPRX Events Management Services">
           <div class="portfolio-content">
             <h3>Exhibition & Trade Show</h3>
             <p>Complete support for booth setup, visuals, and audio-visual requirements.</p>
@@ -1843,6 +1849,7 @@
             <input type="hidden" name="_captcha" value="false">
             <input type="hidden" name="_template" value="table">
             <input type="hidden" name="_subject" value="New Inquiry - PPRX Website">
+            <input type="hidden" name="_next" value="https://www.pprxeventsph.com/?success=true">
 
             <div class="form-group">
               <label for="eventType">Event Type</label>
@@ -1960,12 +1967,15 @@
     const lightboxImage = document.getElementById('lightboxImage');
     const lightboxCaption = document.getElementById('lightboxCaption');
     const lightboxClose = document.getElementById('lightboxClose');
-    const portfolioCards = document.querySelectorAll('.portfolio-card[data-img]');
+    const portfolioCards = document.querySelectorAll('.portfolio-card');
 
     portfolioCards.forEach(card => {
-      card.addEventListener('click', () => {
-        const img = card.getAttribute('data-img');
-        const caption = card.getAttribute('data-caption');
+      card.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const img = card.querySelector('img').src;
+        const caption = card.querySelector('h3').textContent;
+
         lightboxImage.src = img;
         lightboxCaption.textContent = caption;
         lightbox.classList.add('active');
@@ -2113,6 +2123,16 @@
           setLoading(false);
         }
       });
+    }
+
+    if (window.location.search.includes('success=true')) {
+      showInlineStatus('success', 'Thank you! Your inquiry has been sent. Our team will contact you shortly.');
+      showToast('success', 'Inquiry Sent', 'PPRX will contact you soon.');
+      openPopup();
+      if (window.history.replaceState) {
+        const cleanUrl = window.location.pathname;
+        window.history.replaceState({}, document.title, cleanUrl);
+      }
     }
   </script>
 
