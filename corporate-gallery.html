@@ -539,15 +539,64 @@
       }
     });
 
-    document.addEventListener("keydown", function(e) {
-      const lightbox = document.getElementById("lightbox");
-      if (!lightbox.classList.contains("active")) return;
+    function openGallery(mediaArray) {
+  const lightbox = document.getElementById("lightbox");
+  const oldImage = document.getElementById("lightboxImage");
+  const caption = document.getElementById("lightboxCaption");
 
-      if (e.key === "Escape") closeLightbox();
-      if (e.key === "ArrowRight") nextImage();
-      if (e.key === "ArrowLeft") prevImage();
-    });
-  </script>
+  lightbox.classList.add("active");
+  document.body.style.overflow = "hidden";
+
+  if (oldImage) {
+    oldImage.outerHTML = '<div id="lightboxMedia"></div>';
+  }
+
+  const mediaBox = document.getElementById("lightboxMedia");
+  let current = 0;
+
+  function showMedia(index) {
+    mediaBox.innerHTML = "";
+
+    const file = mediaArray[index];
+    const ext = file.split(".").pop().toLowerCase();
+
+    if (ext === "mp4") {
+      mediaBox.innerHTML = `
+        <video controls autoplay style="width:100%; max-height:70vh; object-fit:contain;">
+          <source src="${file}" type="video/mp4">
+        </video>
+      `;
+    } else {
+      mediaBox.innerHTML = `
+        <img src="${file}" alt="Gallery media" style="width:100%; max-height:70vh; object-fit:contain;">
+      `;
+    }
+
+    caption.textContent = "";
+  }
+
+  window.nextImage = function() {
+    current = (current + 1) % mediaArray.length;
+    showMedia(current);
+  };
+
+  window.prevImage = function() {
+    current = (current - 1 + mediaArray.length) % mediaArray.length;
+    showMedia(current);
+  };
+
+  showMedia(current);
+}
+
+document.addEventListener("keydown", function(e) {
+  const lightbox = document.getElementById("lightbox");
+  if (!lightbox.classList.contains("active")) return;
+
+  if (e.key === "Escape") closeLightbox();
+  if (e.key === "ArrowRight") nextImage();
+  if (e.key === "ArrowLeft") prevImage();
+});
+</script>
 
 </body>
 </html>
