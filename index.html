@@ -297,6 +297,7 @@
       background:
         radial-gradient(circle at top left, rgba(0, 102, 255, 0.08), transparent 28%),
         linear-gradient(to bottom, rgba(7, 12, 24, 0.2), rgba(7, 12, 24, 0.45), rgba(7, 12, 24, 0.75));
+      pointer-events: none;
     }
 
     .hero-box {
@@ -328,6 +329,7 @@
       height: 2px;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
       animation: heroShine 4s linear infinite;
+      pointer-events: none;
     }
 
     .hero-box::after {
@@ -341,6 +343,7 @@
       background: linear-gradient(180deg, var(--orange-1), var(--orange-2), transparent);
       box-shadow: 0 0 12px rgba(255,138,0,0.55), 0 0 22px rgba(255,179,71,0.25);
       animation: glowPulse 2.4s ease-in-out infinite;
+      pointer-events: none;
     }
 
     .hero-box:hover {
@@ -367,6 +370,7 @@
       filter: blur(70px);
       z-index: -1;
       animation: logoGlow 3.2s ease-in-out infinite;
+      pointer-events: none;
     }
 
     .hero-logo {
@@ -1056,12 +1060,17 @@
        PORTFOLIO
     ========================= */
     .portfolio-grid {
+      position: relative;
+      z-index: 10;
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 20px;
     }
 
     .portfolio-card {
+      position: relative;
+      z-index: 20;
+      display: block;
       overflow: hidden;
       cursor: pointer;
       transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
@@ -1082,6 +1091,8 @@
     .portfolio-content {
       padding: 22px;
       text-align: center;
+      position: relative;
+      z-index: 21;
     }
 
     .portfolio-content h3 {
@@ -1157,65 +1168,6 @@
       font-size: 14px;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
       letter-spacing: 0.5px;
-    }
-
-    /* =========================
-       LIGHTBOX
-    ========================= */
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      background: rgba(2, 6, 16, 0.88);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      z-index: 2000;
-    }
-
-    .lightbox.active {
-      display: flex;
-    }
-
-    .lightbox-content {
-      width: 100%;
-      max-width: 960px;
-      position: relative;
-      background: #0b1424;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 22px;
-      overflow: hidden;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
-      animation: fadeInSoft 0.35s ease both;
-    }
-
-    .lightbox-content img {
-      width: 100%;
-      max-height: 72vh;
-      object-fit: cover;
-    }
-
-    .lightbox-caption {
-      padding: 18px 22px 24px;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.7;
-      text-align: center;
-    }
-
-    .lightbox-close {
-      position: absolute;
-      top: 10px;
-      right: 12px;
-      width: 42px;
-      height: 42px;
-      border: none;
-      border-radius: 50%;
-      background: rgba(0, 0, 0, 0.45);
-      color: #fff;
-      font-size: 28px;
-      cursor: pointer;
-      z-index: 3;
     }
 
     /* =========================
@@ -1929,14 +1881,6 @@
     © 2026 PPRX Events Management Services | Turning your vision into reality.
   </footer>
 
-  <div class="lightbox" id="lightbox">
-    <div class="lightbox-content">
-      <button class="lightbox-close" id="lightboxClose">&times;</button>
-      <img id="lightboxImage" src="" alt="Expanded event image">
-      <div class="lightbox-caption" id="lightboxCaption"></div>
-    </div>
-  </div>
-
   <div class="toast" id="toast">
     <div class="toast-title" id="toastTitle">Success</div>
     <div class="toast-message" id="toastMessage">Your inquiry has been sent.</div>
@@ -1962,45 +1906,6 @@
     }, { threshold: 0.12 });
 
     revealItems.forEach(item => observer.observe(item));
-
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImage = document.getElementById('lightboxImage');
-    const lightboxCaption = document.getElementById('lightboxCaption');
-    const lightboxClose = document.getElementById('lightboxClose');
-    const portfolioCards = document.querySelectorAll('.portfolio-card');
-
-    portfolioCards.forEach(card => {
-      card.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        const img = card.querySelector('img').src;
-        const caption = card.querySelector('h3').textContent;
-
-        lightboxImage.src = img;
-        lightboxCaption.textContent = caption;
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      });
-    });
-
-    function closeLightbox() {
-      lightbox.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    lightboxClose.addEventListener('click', closeLightbox);
-
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) {
-        closeLightbox();
-      }
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeLightbox();
-      }
-    });
 
     const contactForm = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
@@ -2134,8 +2039,7 @@
         window.history.replaceState({}, document.title, cleanUrl);
       }
     }
-</script>
+  </script>
 
-<!-- trigger rebuild -->
 </body>
 </html>
